@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cadastro-styles.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    
+    <div class="main-cadastro"> 
+        <div class="left-cadastro">
+            <h1> Preencha os campos ao lado e cadastre-se!</h1>
+            <h3> Se você já possui uma conta, clique <a href="../login/login.html"> <span class="highlight">aqui</span> </a>para fazer login.</h3>
+        </div>
+        
+        <div class="rigth-cadastro">
+            <div class="card-cadastro">
+                <form method="post" id="cadastro-form">
+                    <div class="inputBox">
+                        <label for="nome">Nome completo:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Ex: Agnes Beatriz Cardoso" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="ra">RA:</label>
+                        <input type="text" name="ra" id="ra" placeholder="Ex: 1234678" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="periodo">Periodo:</label>
+                        <input type="text" name="periodo" id="periodo" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="email">Curso:</label>
+                        <input type="text" name="curso" id="curso" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="email">E-mail:</label>
+                        <input type="text" name="email" id="email" placeholder="Ex: abc@email.com" required>
+                    </div>
+                    <div class="inputBox"> 
+                        <label for="senha">Senha:</label>
+                        <input type="text" name="senha" id="senha" placeholder="Insira a senha" required>
+                    </div>
+                    <div class="inputBox"> 
+                        <label for="confirmarSenha">Confirmar senha:</label>
+                        <input type="text" name="confirmarSenha" id="confirmarSenha" placeholder="Repita sua senha" required>
+                    </div>
+                    <div class="error-message">
+                        <p>Sua senha deve conter:</p>
+                        <ul>
+                            <li>Pelo menos 8 caracteres</li>
+                            <li>1 letra maiúscula</li>
+                            <li>1 letra minúscula</li>
+                            <li>1 número</li>
+                        </ul>
+                    </div>
+                    
+                    <button class="submit-button" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="cadastro.js"></script>
+    <footer>
+        <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.
+            Alunas de Engenharia de Software na UTFPR-CP - 202</p>
+    </footer>        
+</body>
+</html>
+
