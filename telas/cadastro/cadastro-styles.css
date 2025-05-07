@@ -67,7 +67,7 @@ body {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 90px; /* Move o bloco mais para baixo */
+  margin-top: 90px;
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
@@ -130,7 +130,7 @@ body {
 
 footer {
   position: absolute;
-  bottom: -100px; /* valor negativo afasta ele mais para baixo */
+  bottom: -100px;
   text-align: center;
   width: 100%;
   font-size: 12px;
@@ -150,5 +150,5 @@ footer {
 .img-cadastro {
   max-width: 100%;
   width: 100%;
-  margin-left: 3cm; /* desloca a imagem para a direita */
+  margin-left: 3cm;
 }
