@@ -25,44 +25,34 @@ body {
 
 .main-recuperar {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1000px;
-  width: 100%;
+  width: 90%;
+  max-width: 1200px;
   background-color: #fcfbfa;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  padding: 40px;
-  gap: 40px;
-}
+  overflow: hidden;
 
-.left-recuperar, .rigth-recuperar {
-  width: 50%;
-  padding: 50px;
+  position: absolute; /* Faz o card se mover sem afetar os elementos dentro */
+  top: 50%; /* Move para o centro vertical */
+  left: 50%; /* Move para o centro horizontal */
+  transform: translate(-50%, -50%); /* Ajusta a posição para centralizar perfeitamente */
 }
 
 .left-recuperar {
-  background-color: #fcfbfa;
+  flex: 1;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; 
+  text-align: center;
+  background-color: #fcfbfa;
 }
 
-.left-recuperar h1 {
-  font-size: 28px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.left-recuperar h3 {
-  font-size: 16px;
-  color: #555;
-}
-
-.left-recuperar .highlight {
-  color: #ec3f78;
-  font-weight: bold;
-  text-decoration: underline;
+.img-cadastro {
+  max-width: 100%;
+  width: 100%;
+  margin-right: -113px;
 }
 
 .card-recuperar {
@@ -70,17 +60,15 @@ body {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px; /* move mais à esquerda */
   width: 100%;
-  max-width: 350px;
+  max-width: 400px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  align-items: center;
 }
 
 .inputBox {
   margin-bottom: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -104,20 +92,6 @@ body {
   border-color: #56c7bd;
 }
 
-.error-message {
-  background-color: #56c7bd;
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 13px;
-  color: white;
-  margin-bottom: 20px;
-}
-
-.error-message ul {
-  margin-top: 5px;
-  padding-left: 20px;
-}
-
 .submit-button {
   background-color: #DCDCDC;
   color: rgba(0, 0, 0, 0.686);
@@ -132,6 +106,10 @@ body {
 
 .submit-button:hover {
   background-color: #56c7bd;
+}
+
+.login-link {
+  margin-top: 10px;
 }
 
 .link-container {
@@ -160,6 +138,17 @@ body {
   font-size: 13px;
 }
 
+.right-recuperar {
+  width: 50%;
+  padding: 50px;
+  display: flex;
+  justify-content: flex-start; /* continua puxando o form para a esquerda */
+  align-items: center; /* centraliza no eixo Y */
+  height: 100vh; /* garante altura total da tela */
+  position: relative;
+  left: -20px; /* mantemos o ajuste horizontal */
+}
+
 footer {
   position: absolute;
   bottom: 20px;
@@ -167,19 +156,4 @@ footer {
   width: 100%;
   font-size: 12px;
   color: #999;
-}
-
-.left-recuperar {
-  flex: 1;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
-  text-align: center;   
-}
-
-.img-cadastro {
-  max-width: 100%;
-  width: 100%;
 }
