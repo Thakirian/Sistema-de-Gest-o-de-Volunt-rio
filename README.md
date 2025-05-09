@@ -22,6 +22,6 @@ npm run dev
 
 # Acesse a aplicação
 Em seu navegador, abra:
-http://localhost:5173/screans/cadastro/cadastro.html
+http://localhost:5173/src/screans/cadastro/cadastro.html
 
 OBS: esse é apenas para testar o cadastro - auth e firestore no firebase 
