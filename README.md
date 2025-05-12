@@ -1,21 +1,68 @@
-# Sistema de Gestão de Voluntário
-Sistema web para gestão de voluntariado do projeto "Quanto Amor Você Tem Para Dar" (UTFPR-CP). Permite cadastro de voluntários, registro de horas, organização de oficinas e solicitação de certificados. Desenvolvido com HTML, CSS, JS e Firebase, seguindo a metodologia FDD.
+# Sistema de Gestão de Voluntários
 
-# Pré-requisitos para rodar:
-Node.js instalado (versão 16+)
-Git instalado (opcional, apenas se for clonar o repositório)
+Este é um sistema web desenvolvido para o **projeto "Quanto Amor Você Tem Para Dar"** (UTFPR-CP). O sistema visa facilitar a gestão de voluntários, incluindo funcionalidades como:
+- Cadastro de voluntários.
+- Registro de horas de participação.
+- Organização de oficinas.
+- Solicitação e gerenciamento de certificados.
 
-# Clone o repositório (se aplicável)
+Tecnologias utilizadas:
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: Firebase (Firestore para banco de dados, Firebase Auth para autenticação)
+- **Metodologia de Desenvolvimento**: Feature-Driven Development (FDD)
+
+
+### Pré-requisitos
+
+Antes de rodar o projeto, é necessário ter os seguintes itens instalados:
+
+- **Node.js** (versão 16 ou superior)
+- **Git** (opcional, apenas se for clonar o repositório)
+
+
+### Clonando o Repositório
+
+Se você não tem o repositório localmente, clone-o utilizando o comando:
+
+```bash
 git clone [URL_DO_REPOSITORIO]
 cd [NOME_DO_PROJETO]
 
-# Como executar o projeto localmente
-git clone [URL_DO_REPOSITORIO]
-cd [NOME-DA-PASTA-DO-PROJETO]
 
-Instale as dependências:
-npm install
-npm install firebase vite --save
+### Como Executar o Projeto Localmente
+
+1. Após clonar o repositório, navegue até o diretório do projeto:
+
+    ```bash
+    cd [NOME_DO_PROJETO]
+    ```
+
+2. Instale as dependências do projeto:
+
+    ```bash
+    npm install
+    ```
+
+3. Instale as dependências específicas para Firebase e Vite:
+
+    ```bash
+    npm install firebase vite --save
+    ```
+
+4. Inicie o servidor de desenvolvimento:
+
+    ```bash
+    npm run dev
+    ```
+
+5. Acesse a aplicação no navegador:
+
+    ```
+    http://localhost:5173/src/screens/cadastro/cadastro.html
+    ```
+
+    **Obs**: Este link é apenas para testar o cadastro, incluindo a integração com o Firebase Auth e Firestore.
+
 
 # Inicie o servidor de desenvolvimento
 npm run dev
