@@ -1,4 +1,5 @@
-# Sistema de Gestão de Voluntários
+# Sistema de Gestão de Voluntários ![Group 11](https://github.com/user-attachments/assets/1b971359-b6c3-455b-b552-729b894a5d71)
+
 
 Este é um sistema web desenvolvido para o **projeto "Quanto Amor Você Tem Para Dar"** (UTFPR-CP). O sistema visa facilitar a gestão de voluntários, incluindo funcionalidades como:
 - Cadastro de voluntários.
