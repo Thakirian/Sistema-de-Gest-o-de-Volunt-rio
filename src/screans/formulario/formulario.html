@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <nav class="menuLateral">
+      <div class="expandir">
+        <i class="icon"> <span class="material-icons">menu</span> </i>
+      </div>
+
+      <ul>
+        <li class="item-menu">
+          <a href="#">
+            <span class="txt-link"> Perfil </span>
+          </a>
+        </li>
+
+        <li class="item-menu">
+          <a href="#">
+            <span class="txt-link"> Solicitações </span>
+          </a>
+        </li>
+
+        <li class="item-menu">
+          <a href="#">
+            <span class="txt-link"> Formulário </span>
+          </a>
+        </li>
+
+        <li class="item-menu">
+          <a href="#">
+            <span class="txt-link"> Oficinas </span>
+                <ul class="submenu">
+                    <li><a href="#ecobag">EcoBag</a></li>
+                    <li><a href="#pelucia">Pelúcia</a></li>
+                    <li><a href="#ecomural">EcoMural</a></li>
+                    <li><a href="#novaoficina">Novo</a></li>
+                </ul>
+          </a>
+        </li>
+
+        <li class="item-menu">
+          <a href="#">
+            <span class="txt-link"> Sair </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <h1>Formulário</h1>
+    
+    <form id="certificadoForm">
+        <div class="form-group">
+            <label for="dataParticipacao">Data da participação</label>
+            <input type="date" id="dataParticipacao" name="dataParticipacao" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="papelDesempenhado">Papel que desempenhou na oficina</label>
+            <input type="text" id="papelDesempenhado" name="papelDesempenhado" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="detalhes">Detalhes</label>
+            <textarea id="detalhes" name="detalhes"></textarea>
+        </div>
+        
+        <button type="submit">Solicitar Certificado</button>
+    </form>
+        
+    
+    <footer>
+        <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.
+            Alunas de Engenharia de Software na UTFPR-CP - 2025</p>
+    </footer>        
+</body>
+</html>
+
