@@ -159,3 +159,21 @@ footer {
   margin-top: 5px;
   min-height: 1rem;
 }
+
+.highlight {
+  color: rgba(0, 0, 0, 0.686);
+  text-decoration: underline;
+  font-size: 12px;
+  transition: font-size 0.3s, color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.highlight:hover {
+  color: #56c7bd;
+  font-size: 13px;
+}
