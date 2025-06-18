@@ -96,8 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 firestoreSettings
             );
 
-            // 4. Redireciona para página de sucesso
-            window.location.href = 'success.html';
+            // 4. Redireciona para página de login
+            alert('Cadastro realizado com sucesso! Você pode fazer login agora.');
+            window.location.href = './login/login.html';
             
         } catch (error) {
             console.error('Erro no Firebase:', error);
