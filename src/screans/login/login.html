@@ -14,33 +14,33 @@
         
         <div class="rigth-login">
             <div class="card-login">
-
                 <form method="post" id="login-form">
                     <div class="text-field">
-                        <label for="ra"> RA </label>
-                        <input type="ra" id="ra" name="ra" placeholder="Utilize um RA válido" required>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
                     </div>
                     <div class="text-field">
                         <label for="senha"> Senha </label>
                         <input type="password" id="senha" name="senha" placeholder="Senha" required>
                     </div>
 
+                    <div id="login-error-message" class="error-text"></div> 
+                    
                     <button class="submit-button" type="submit">Entrar</button>
                 </form>
 
                 <div class="link-container">
                     <div class="recover-password-link">
-                      <a href="../recuperar/recuperar.html">
-                        <span class="highlight">Recuperar senha</span>
-                      </a>
+                        <a href="../recuperar/recuperar.html">
+                            <span class="highlight">Recuperar senha</span>
+                        </a>
                     </div>
                     <div class="register-link">
-                      <a href="../cadastro/cadastro.html">
-                        <span class="highlight">Inscreva-se</span>
-                      </a>
+                        <a href="../cadastro/cadastro.html">
+                            <span class="highlight">Inscreva-se</span>
+                        </a>
                     </div>
-                  </div>
-                
+                </div>
             </div>
         </div>
     </div>
@@ -49,7 +49,5 @@
         <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.
             Alunas de Engenharia de Software na UTFPR-CP - 2025</p>
     </footer>
-
-    <script src="login.js"></script>
-</body>
+    <script type="module" src="login.js"></script> </body>
 </html>
