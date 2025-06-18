@@ -104,7 +104,7 @@ body {
   border-color: #56c7bd;
 }
 
-.error-message {
+.error-message { 
   background-color: #56c7bd;
   padding: 10px 15px;
   border-radius: 10px;
@@ -113,10 +113,31 @@ body {
   margin-bottom: 20px;
 }
 
-.error-message ul {
+.error-message ul { 
   margin-top: 5px;
   padding-left: 20px;
 }
+
+.error-text {
+  color: #ec3f78; 
+  font-size: 0.8rem;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  min-height: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.success-text {
+    color: #56c7bd;
+    font-size: 0.8rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    min-height: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
 
 .submit-button {
   background-color: #DCDCDC;
@@ -175,8 +196,8 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
-  text-align: center;   
+  align-items: center;
+  text-align: center;
 }
 
 .img-cadastro {
