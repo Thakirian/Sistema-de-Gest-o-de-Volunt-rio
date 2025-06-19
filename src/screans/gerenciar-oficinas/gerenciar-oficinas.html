@@ -4,73 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Oficinas</title>
-    <link rel="stylesheet" href="gerenciar-oficinas.css"/>
+    
 </head>
 <body>
-           
-           <!-- Gerenciar Oficinas Screen -->
-            <div class="screen" id="oficinas">
-                <div class="header">
-                    <h1 class="page-title">Gerenciar Oficinas</h1>
-                    <div class="header-actions">
-                        <button class="btn btn-primary" onclick="openModal('novaOficinaModal')">+ Nova Oficina</button>
-                    </div>
-                </div>
-                
-                <div class="content">
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nome da Oficina</th>
-                                    <th>Instrutor</th>
-                                    <th>Participantes</th>
-                                    <th>Data Início</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Excel Avançado</td>
-                                    <td>Maria Santos</td>
-                                    <td>45</td>
-                                    <td>15/06/2025</td>
-                                    <td><span class="status-badge status-ativa">Ativa</span></td>
-                                    <td>
-                                        <button class="btn">Editar</button>
-                                        <button class="btn">Ver Detalhes</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>PowerBI para Iniciantes</td>
-                                    <td>João Oliveira</td>
-                                    <td>32</td>
-                                    <td>10/06/2025</td>
-                                    <td><span class="status-badge status-ativa">Ativa</span></td>
-                                    <td>
-                                        <button class="btn">Editar</button>
-                                        <button class="btn">Ver Detalhes</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Python Básico</td>
-                                    <td>Ana Silva</td>
-                                    <td>28</td>
-                                    <td>20/06/2025</td>
-                                    <td><span class="status-badge status-inativa">Inativa</span></td>
-                                    <td>
-                                        <button class="btn">Editar</button>
-                                        <button class="btn">Ver Detalhes</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <!-- Gerenciar Oficinas Screen -->
+    <div class="screen" id="oficinas">
+        <div class="header">
+            <h1 class="page-title">Gerenciar Oficinas</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="openModal('novaOficinaModal')">+ Nova Oficina</button>
             </div>
+        </div>
+        
+        <div class="content">
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome da Oficina</th>
+                            <th>Instrutor</th>
+                            <th>Participantes</th>
+                            <th>Data Início</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Excel Avançado</td>
+                            <td>Maria Santos</td>
+                            <td>45</td>
+                            <td>15/06/2025</td>
+                            <td><span class="status-badge status-ativa">Ativa</span></td>
+                            <td>
+                                <button class="btn">Editar</button>
+                                <button class="btn">Ver Detalhes</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PowerBI para Iniciantes</td>
+                            <td>João Oliveira</td>
+                            <td>32</td>
+                            <td>10/06/2025</td>
+                            <td><span class="status-badge status-ativa">Ativa</span></td>
+                            <td>
+                                <button class="btn">Editar</button>
+                                <button class="btn">Ver Detalhes</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Python Básico</td>
+                            <td>Ana Silva</td>
+                            <td>28</td>
+                            <td>20/06/2025</td>
+                            <td><span class="status-badge status-inativa">Inativa</span></td>
+                            <td>
+                                <button class="btn">Editar</button>
+                                <button class="btn">Ver Detalhes</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-            
     <!-- Modal Nova Oficina -->
     <div id="novaOficinaModal" class="modal">
         <div class="modal-content">
@@ -78,38 +76,41 @@
                 <h2 class="modal-title">Nova Oficina</h2>
                 <button class="close-btn" onclick="closeModal('novaOficinaModal')">&times;</button>
             </div>
-            <form>
+            <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label class="form-label">Nome da Oficina</label>
-                    <input type="text" class="form-input" placeholder="Digite o nome da oficina">
+                    <input type="text" class="form-input" placeholder="Digite o nome da oficina" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Descrição</label>
                     <textarea class="form-input form-textarea" placeholder="Descreva a oficina..."></textarea>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label">Instrutor</label>
-                        <input type="text" class="form-input" placeholder="Nome do instrutor">
+                        <input type="text" class="form-input" placeholder="Nome do instrutor" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Carga Horária</label>
-                        <input type="number" class="form-input" placeholder="40">
+                        <input type="number" class="form-input" placeholder="40" min="1" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Data de Início</label>
-                        <input type="date" class="form-input">
+                        <input type="date" class="form-input" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Vagas Disponíveis</label>
-                        <input type="number" class="form-input" placeholder="30">
+                        <input type="number" class="form-input" placeholder="30" min="1" required>
                     </div>
                 </div>
-                <div style="display: flex; gap: 12px; margin-top: 20px;">
+                <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Criar Oficina</button>
                     <button type="button" class="btn" onclick="closeModal('novaOficinaModal')">Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
+
+    
 </body>
+</html>
