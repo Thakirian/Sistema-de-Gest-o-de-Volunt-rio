@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard do Coordenador</title>
+    <title>Dashboard do Voluntário</title>
     <link rel="stylesheet" href="dashboard-voluntario.css"/>
 </head>
 <body>
     <div class="container">
-       <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <div class="logo-icon"></div>
@@ -20,66 +19,114 @@
                     <div class="menu-icon dashboard-icon"></div>
                     Dashboard
                 </a>
-                <a href="#" class="menu-item" onclick="showScreen('oficinas')">
+                <a href="#" class="menu-item" onclick="showScreen('minhas-oficinas')">
                     <div class="menu-icon oficinas-icon"></div>
-                    Gerenciar Oficinas
+                    Minhas Oficinas
                 </a>
-                <a href="#" class="menu-item" onclick="showScreen('certificados')">
+                <a href="#" class="menu-item" onclick="showScreen('meus-certificados')">
                     <div class="menu-icon certificados-icon"></div>
-                    Solicitações de Certificado
+                    Meus Certificados
                 </a>
                 <a href="#" class="menu-item" onclick="showScreen('perfil')">
                     <div class="menu-icon perfil-icon"></div>
-                    Perfil / Meus Dados
+                    Meu Perfil
                 </a>
             </nav>
 
             <div class="user-info">
-                <div class="user-name">João Silva</div>
-                <div class="user-role">Coordenador</div>
+                <div class="user-name" id="user-name">Carregando...</div>
+                <div class="user-role" id="user-role">Voluntário</div>
             </div>
-             <a href="#" class="logout">Sair</a>
+            <a href="#" class="logout" id="logout-btn">Sair</a>
         </div>
 
-        <!-- Main Content -->
         <div class="main-content">
-            <!-- Dashboard Screen -->
             <div class="screen active" id="dashboard">
                 <div class="header">
-                    <h1 class="page-title">Dashboard</h1>
+                    <h1 class="page-title">Dashboard do Voluntário</h1>
                 </div>
                 
                 <div class="content">
                     <div class="stats-grid">
                         <div class="stat-card oficinas">
-                            <div class="stat-number">24</div>
-                            <div class="stat-label">Oficinas Ativas</div>
-                            <div class="stat-trend">+3 este mês</div>
+                            <div class="stat-number" id="horas-acumuladas">0</div>
+                            <div class="stat-label">Horas Acumuladas</div>
+                            <div class="stat-trend" id="horas-mes">Carregando...</div>
                         </div>
                         <div class="stat-card participantes">
-                            <div class="stat-number">847</div>
-                            <div class="stat-label">Participantes Ativos</div>
-                            <div class="stat-trend">+127 este mês</div>
+                            <div class="stat-number" id="oficinas-inscritas">0</div>
+                            <div class="stat-label">Oficinas Inscritas</div>
+                            <div class="stat-trend" id="oficinas-futuras">Carregando...</div>
                         </div>
                         <div class="stat-card certificados">
-                            <div class="stat-number">156</div>
-                            <div class="stat-label">Certificados Emitidos</div>
-                            <div class="stat-trend">+43 esta semana</div>
+                            <div class="stat-number" id="certificados-solicitados">0</div>
+                            <div class="stat-label">Certificados Solicitados</div>
+                            <div class="stat-trend" id="certificados-disponiveis">Carregando...</div>
                         </div>
                         <div class="stat-card pendentes">
-                            <div class="stat-number">12</div>
+                            <div class="stat-number" id="solicitacoes-pendentes">0</div>
                             <div class="stat-label">Solicitações Pendentes</div>
-                            <div class="stat-trend">Requer atenção</div>
+                            <div class="stat-trend">Verifique o status</div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2 class="section-title">Próximas Oficinas</h2>
+                        <div class="table-container">
+                            <table class="table" id="proximas-oficinas-table">
+                                <thead>
+                                    <tr>
+                                        <th>Oficina</th>
+                                        <th>Data</th>
+                                        <th>Local</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">Nenhuma oficina futura encontrada.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <script type="module" src="dashboard-voluntario.js"></script>
+            <div class="screen" id="minhas-oficinas">
+                <div class="header">
+                    <h1 class="page-title">Minhas Oficinas</h1>
+                </div>
+                <div class="content">
+                    <p>Conteúdo da tela Minhas Oficinas.</p>
+                </div>
+            </div>
+
+            <div class="screen" id="meus-certificados">
+                <div class="header">
+                    <h1 class="page-title">Meus Certificados</h1>
+                </div>
+                <div class="content">
+                    <p>Conteúdo da tela Meus Certificados.</p>
+                </div>
+            </div>
+
+            <div class="screen" id="perfil">
+                <div class="header">
+                    <h1 class="page-title">Meu Perfil</h1>
+                </div>
+                <div class="content">
+                    <p>Conteúdo da tela Meu Perfil.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="dashboard-voluntario.js"></script>
     <footer>
         <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.
             Alunas de Engenharia de Software na UTFPR-CP - 2025</p>
-    </footer>  
+    </footer>   
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Coordenador</title>
+    <link rel="stylesheet" href="dashboard-coordenador.css"/>
+</head>
+<body>
+    <div class="container">
+       <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">Sistema Oficinas</span>
+            </div>
+            
+            <nav class="menu">
+                <a href="#" class="menu-item active" onclick="showScreen('dashboard')">
+                    <div class="menu-icon dashboard-icon"></div>
+                    Dashboard
+                </a>
+                <a href="#" class="menu-item" onclick="showScreen('oficinas')">
+                    <div class="menu-icon oficinas-icon"></div>
+                    Gerenciar Oficinas
+                </a>
+                <a href="#" class="menu-item" onclick="showScreen('certificados')">
+                    <div class="menu-icon certificados-icon"></div>
+                    Solicitações de Certificado
+                </a>
+                <a href="#" class="menu-item" onclick="showScreen('perfil')">
+                    <div class="menu-icon perfil-icon"></div>
+                    Perfil / Meus Dados
+                </a>
+            </nav>
+
+            <div class="user-info">
+                <div class="user-name">João Silva</div>
+                <div class="user-role">Coordenador</div>
+            </div>
+             <a href="#" class="logout">Sair</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Screen -->
+            <div class="screen active" id="dashboard">
+                <div class="header">
+                    <h1 class="page-title">Dashboard do Coordenador</h1>
+                </div>
+                
+                <div class="content">
+                    <div class="stats-grid">
+                        <div class="stat-card oficinas">
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Oficinas Ativas</div>
+                            <div class="stat-trend">+3 este mês</div>
+                        </div>
+                        <div class="stat-card participantes">
+                            <div class="stat-number">847</div>
+                            <div class="stat-label">Participantes Ativos</div>
+                            <div class="stat-trend">+127 este mês</div>
+                        </div>
+                        <div class="stat-card certificados">
+                            <div class="stat-number">156</div>
+                            <div class="stat-label">Certificados Emitidos</div>
+                            <div class="stat-trend">+43 esta semana</div>
+                        </div>
+                        <div class="stat-card pendentes">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Solicitações Pendentes</div>
+                            <div class="stat-trend">Requer atenção</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <script type="module" src="dashboard-coordenador.js"></script>
+    <footer>
+        <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.
+            Alunas de Engenharia de Software na UTFPR-CP - 2025</p>
+    </footer>  
+</body>
+</html>
