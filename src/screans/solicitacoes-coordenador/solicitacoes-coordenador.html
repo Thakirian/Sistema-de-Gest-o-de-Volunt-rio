@@ -1,3 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitações do Coordenador</title>
+    
+</head>
+<body>
+     <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">Sistema Oficinas</span>
+            </div>
+            
+            <nav class="menu">
+                <a href="../dashboard-coordenador/dashboard-coordenador.html" class="menu-item active" onclick="showScreen('dashboard')">
+                    <div class="menu-icon dashboard-icon"></div>
+                    Dashboard
+                </a>
+                <a href="../gerenciar-oficinas/gerenciar-oficinas.html" class="menu-item" onclick="showScreen('oficinas')">
+                    <div class="menu-icon oficinas-icon"></div>
+                    Gerenciar Oficinas
+                </a>
+                <a href="../solicitacoes-coordenador/solicitacoes-coordenador.html" class="menu-item" onclick="showScreen('certificados')">
+                    <div class="menu-icon certificados-icon"></div>
+                    Solicitações de Certificado
+                </a>
+                <a href="../perfil-coordenador/perfil-coordenador.html" class="menu-item" onclick="showScreen('perfil')">
+                    <div class="menu-icon perfil-icon"></div>
+                    Perfil / Meus Dados
+                </a>
+            </nav>
+
+            <div class="user-info">
+                <div class="user-name">João Silva</div>
+                <div class="user-role">Coordenador</div>
+            </div>
+             <a href="../login/login.html" class="logout">Sair</a>
+        </div>
 
             <!-- Solicitações de Certificado Screen -->
             <div class="screen" id="certificados">
@@ -59,4 +100,5 @@
                     </div>
                 </div>
             </div>
-
+        </body>
+</html>
