@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cadastro-coordenador.css"> <title>Cadastro do Coordenador</title>
+</head>
+<body>
+    
+    <div class="main-cadastro"> 
+        <div class="left-cadastro">
+            <img src="../../img/logo-cadastro.png" alt="Logo Quanto Amor Você Tem Para Dar?" class="img-cadastro">
+            <h1>Cadastre-se como Coordenador!</h1>
+            <h3>Gerencie projetos ambientais e conecte-se com voluntários apaixonados.</h3>
+        </div>
+        
+        <div class="rigth-cadastro">
+            <div class="card-cadastro">
+                <form id="cadastro-form">
+                    <h2>Cadastro de Coordenador</h2> 
+                    <div class="inputBox">
+                        <label for="nome">Nome completo:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Ex: Professor João Silva" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="matricula">Identificador:</label>
+                        <input type="text" name="matricula" id="matricula" placeholder="Ex: 1234567-8" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="departamento">Departamento/Área:</label>
+                        <input type="text" name="departamento" id="departamento" placeholder="Ex: Engenharia Ambiental" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="email">E-mail:</label>
+                        <input type="email" name="email" id="email" placeholder="Ex: seu.email@utfpr.edu.br" required>
+                    </div>
+                    <div class="inputBox"> 
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senha" placeholder="Insira a senha" required>
+                    </div>
+                    <div class="inputBox"> 
+                        <label for="confirmarSenha">Confirmar senha:</label>
+                        <input type="password" name="confirmarSenha" id="confirmarSenha" placeholder="Repita sua senha" required>
+                    </div>
+                    <div class="error-message">
+                        <p>Sua senha deve conter:</p>
+                        <ul>
+                            <li>Pelo menos 8 caracteres</li>
+                            <li>1 letra maiúscula</li>
+                            <li>1 letra minúscula</li>
+                            <li>1 número</li>
+                        </ul>
+                    </div>
+                    <div class="inputBox">
+                        <div id="email-error" class="error-text"></div>
+                    </div>
+                    
+                    <div class="inputBox">
+                        <div id="senha-error" class="error-text"></div>
+                    </div>
+                    
+                    <button class="submit-button" type="submit">Cadastrar Coordenador</button> <div class="login-link">
+                        <a href="../login/login.html">
+                            <span class="highlight">Login</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="cadastro-coordenador.js"></script>
+    <footer>
+        <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.</p>
+        <p>Alunas de Engenharia de Software na UTFPR-CP - 2025</p>
+    </footer>         
+</body>
+</html>
