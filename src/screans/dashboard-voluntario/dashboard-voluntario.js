@@ -12,6 +12,10 @@ import { initHistoricoSolicitacoes } from '../historico-solicitacoes/historico-s
 // Importa a função de inicialização da tela de solicitar certificado 
 import { initSolicitarCertificado } from '../solicitar-certificado/solicitar-certificado.js';
 
+// Importa a função de inicialização da tela de perfil do voluntário
+import { initPerfilVoluntario } from '../perfil-voluntario/perfil-voluntario.js'; // Adicione esta linha
+
+
 // Importa a função de inicialização do componente menu lateral do voluntário
 import { initMenuLateralVoluntario } from '../../components/menu-lateral-voluntario/menulateral-voluntario.js';
 
@@ -31,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         'lista-oficinas': '../lista-oficinas/lista-oficinas.html', 
         'historico-solicitacoes': '../historico-solicitacoes/historico-solicitacoes.html',
         'solicitar-certificado': '../solicitar-certificado/solicitar-certificado.html',
-        // 'perfil': '../perfil/perfil.html'
+        'perfil': '../perfil-voluntario/perfil-voluntario.html'
     };
 
     // Define as funções de inicialização para as outras telas (se houver JS específico para elas)
@@ -39,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         'lista-oficinas': initListaOficinas,
         'historico-solicitacoes': initHistoricoSolicitacoes,
         'solicitar-certificado': initSolicitarCertificado,
-        // 'perfil': initPerfil,
+        'perfil': initPerfilVoluntario
     };
 
     // Função para carregar o conteúdo HTML de uma tela secundária
