@@ -9,6 +9,9 @@ import { initListaOficinas } from '../lista-oficinas/lista-oficinas.js';
 // Importa a função de inicialização da tela de histórico de solicitações
 import { initHistoricoSolicitacoes } from '../historico-solicitacoes/historico-solicitacoes.js'; 
 
+// Importa a função de inicialização da tela de solicitar certificado 
+import { initSolicitarCertificado } from '../solicitar-certificado/solicitar-certificado.js';
+
 // Importa a função de inicialização do componente menu lateral do voluntário
 import { initMenuLateralVoluntario } from '../../components/menu-lateral-voluntario/menulateral-voluntario.js';
 
@@ -27,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const screenPaths = {
         'lista-oficinas': '../lista-oficinas/lista-oficinas.html', 
         'historico-solicitacoes': '../historico-solicitacoes/historico-solicitacoes.html',
-        // 'solicitar-certificado': '../solicitar-certificado/solicitar-certificado.html',
+        'solicitar-certificado': '../solicitar-certificado/solicitar-certificado.html',
         // 'perfil': '../perfil/perfil.html'
     };
 
@@ -35,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const screenInitializers = {
         'lista-oficinas': initListaOficinas,
         'historico-solicitacoes': initHistoricoSolicitacoes,
-        // 'solicitar-certificado': initSolicitarCertificado,
+        'solicitar-certificado': initSolicitarCertificado,
         // 'perfil': initPerfil,
     };
 
