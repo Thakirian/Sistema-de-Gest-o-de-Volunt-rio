@@ -1,0 +1,98 @@
+/* src/screens/historico-solicitacoes/historico-solicitacoes.css */
+
+/* Paleta de Cores:
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
+/* Reset e base (já cobertos pelo seu CSS global, mas mantidos para clareza) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Usando a fonte do seu dashboard */
+}
+
+/* Container principal da tela de histórico, se necessário para padding/margin */
+.historico-solicitacoes-content {
+    padding: 30px; /* Consistente com o padding do .content do dashboard */
+    background-color: #fcfbfa; /* Fundo branco gelo */
+    border-radius: 8px; /* Borda arredondada para o conteúdo */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Sombra suave */
+}
+
+
+h1 {
+    font-size: 26px; /* Tamanho do título consistente com section-title do dashboard */
+    margin-bottom: 30px;
+    font-weight: 700; /* Mais negrito */
+    color: #808eea; /* azul lavanda para o título da página */
+    text-align: center; /* Centralizado, como nos títulos do dashboard */
+}
+
+.solicitacoes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white; /* Fundo branco para a tabela */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra mais destacada */
+    border-radius: 12px; /* Cantos arredondados */
+    overflow: hidden; /* Garante que a sombra e borda arredondada funcionem com overflow */
+}
+
+.solicitacoes-table th {
+    background-color: #fcfbfa; /* branco gelo para o cabeçalho da tabela */
+    padding: 16px; /* Aumentado para melhor espaçamento */
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #666; /* Cor de texto padrão */
+    border-bottom: 1px solid #e0e0e0; /* Borda inferior */
+}
+
+.solicitacoes-table td {
+    padding: 16px; /* Aumentado para melhor espaçamento */
+    border-top: 1px solid #f0f0f0;
+    font-size: 14px;
+    color: #333; /* Cor de texto padrão para células */
+}
+
+.solicitacoes-table tbody tr:hover {
+    background-color: rgba(128, 142, 234, 0.05); /* azul lavanda bem suave no hover */
+}
+
+.solicitacoes-table tr:nth-child(even) {
+    background-color: #fafafa; /* Um cinza bem clarinho para linhas pares, menos contraste que o f8f9ff */
+}
+
+/* Estilos dos Badges de Status (usando a paleta) */
+.status {
+    padding: 6px 14px; /* Aumentado o padding */
+    border-radius: 20px; /* Mais arredondado */
+    font-size: 12px;
+    font-weight: 600; /* Mais negrito */
+    display: inline-block;
+    text-align: center;
+    min-width: 90px; /* Largura mínima para consistência */
+    text-transform: uppercase; /* Opcional: deixar o texto em maiúsculas */
+}
+
+.status-aprovado {
+    background-color: rgba(86, 199, 189, 0.2); /* verde água claro */
+    color: #56c7bd; /* verde água */
+}
+
+.status-pendente {
+    background-color: rgba(251, 212, 73, 0.2); /* amarelo claro */
+    color: #fbd449; /* amarelo */
+}
+
+.status-rejeitado { /* Adicionando status 'rejeitado' para o futuro */
+    background-color: rgba(236, 63, 120, 0.2); /* rosa escuro claro */
+    color: #ec3f78; /* rosa escuro */
+}
