@@ -1,4 +1,15 @@
-/* Seu CSS atual, com uma pequena adição para o novo ícone */
+/* src/screens/dashboard-voluntario/dashboard-voluntario.css */
+
+/* Paleta de Cores:
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +18,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #fcfbfa;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,106 +30,16 @@ body {
     height: 100vh;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 280px;
-    background: white;
-    border-right: 1px solid #e0e0e0;
-    display: flex;
-    flex-direction: column;
-}
-
-.logo {
-    padding: 20px;
-    border-bottom: 1px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-icon {
-    width: 32px;
-    height: 32px;
-    background: radial-gradient(circle, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
-    border-radius: 50%;
-}
-
-.logo-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-}
-
-.menu {
-    flex: 1;
-    padding: 20px 0;
-}
-
-.menu-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 20px;
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-    border-left: 3px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.menu-item:hover {
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-.menu-item.active {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    border-left-color: #1976d2;
-}
-
-.menu-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
-    background-color: currentColor;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-}
-
-.dashboard-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-6h-8v6zm0-18v6h8V3h-8z'/%3E%3C/svg%3E"); }
-.oficinas-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E"); }
-.certificados-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z'/%3E%3C/svg%3E"); }
-/* Novo ícone para "Solicitar Certificado" (pode ajustar) */
-.certificado-add-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2.5L18.5 9H13V4.5zM17 13h-2v2h-2v-2H9v-2h2V9h2v2h2v2zm-3 4H7v-4h7v4z'/%3E%3C/svg%3E"); }
-.perfil-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"); }
-
-.user-info {
-    padding: 20px;
-    border-top: 1px solid #e0e0e0;
-    background-color: #fafafa;
-}
-
-.user-name {
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 4px;
-}
-
-.user-role {
-    font-size: 12px;
-    color: #666;
-}
-
 /* Main Content */
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: #fcfbfa; 
 }
 
 .header {
-    background: white;
+    background: #fcfbfa; 
     padding: 20px 30px;
     border-bottom: 1px solid #e0e0e0;
     display: flex;
@@ -129,7 +50,7 @@ body {
 .page-title {
     font-size: 24px;
     font-weight: 600;
-    color: #333;
+    color: #808eea; 
 }
 
 .header-actions {
@@ -147,18 +68,19 @@ body {
 }
 
 .btn-primary {
-    background-color: #1976d2;
+    background-color: #808eea; 
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #1565c0;
+    background-color: #6a7ad0; 
 }
 
 .content {
     flex: 1;
     padding: 30px;
     overflow-y: auto;
+    background-color: #fcfbfa;
 }
 
 /* Dashboard Cards */
@@ -173,20 +95,19 @@ body {
     background: white;
     padding: 24px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     border-left: 4px solid;
 }
 
-.stat-card.horas-acumuladas { border-left-color: #4caf50; } /* Verde para algo positivo */
-.stat-card.oficinas { border-left-color: #2196f3; } /* Azul para algo informativo */
-.stat-card.pendentes { border-left-color: #f44336; } /* Vermelho para algo que precisa de atenção */
-/* Removidos os outros .stat-card classes que não serão mais usadas nos cards */
-
+/* Cores da Paleta para as bordas dos cartões */
+.stat-card.horas-acumuladas { border-left-color: #56c7bd; }
+.stat-card.oficinas { border-left-color: #808eea; }
+.stat-card.pendentes { border-left-color: #f07839; }
 
 .stat-number {
     font-size: 36px;
     font-weight: 700;
-    color: #333;
+    color: #ec3f78;
     margin-bottom: 8px;
 }
 
@@ -198,10 +119,9 @@ body {
 
 .stat-trend {
     font-size: 12px;
-    color: #4caf50;
+    color: #56c7bd; /
 }
 
-/* Recent Activities */
 .section {
     background: white;
     border-radius: 12px;
@@ -213,7 +133,7 @@ body {
 .section-title {
     font-size: 18px;
     font-weight: 600;
-    color: #333;
+    color: #808eea; /* azul lavanda para títulos de seção */
     margin-bottom: 20px;
 }
 
@@ -236,12 +156,12 @@ body {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #e3f2fd;
+    background-color: #f3b1d8; /* rosa claro para o background do ícone de atividade */
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 12px;
-    color: #1976d2;
+    color: #ec3f78; /* rosa escuro para a cor do ícone */
     font-size: 14px;
 }
 
@@ -260,7 +180,7 @@ body {
     color: #666;
 }
 
-/* Tables */
+/* Tables (Minhas Solicitações Recentes) */
 .table-container {
     background: white;
     border-radius: 12px;
@@ -274,11 +194,11 @@ body {
 }
 
 .table th {
-    background-color: #f8f9fa;
+    background-color: #fcfbfa; /* branco gelo para o cabeçalho da tabela */
     padding: 16px;
     text-align: left;
     font-weight: 600;
-    color: #333;
+    color: #666;
     border-bottom: 1px solid #e0e0e0;
 }
 
@@ -289,9 +209,10 @@ body {
 }
 
 .table tbody tr:hover {
-    background-color: #f8f9fa;
+    background-color: rgba(128, 142, 234, 0.05); /* azul lavanda bem suave no hover */
 }
 
+/* Status Badges na tabela */
 .status-badge {
     padding: 4px 12px;
     border-radius: 20px;
@@ -299,9 +220,18 @@ body {
     font-weight: 500;
 }
 
-.status-aprovado { background-color: #e8f5e8; color: #2e7d32; }
-.status-rejeitado { background-color: #ffebee; color: #c62828; }
-.status-pendente { background-color: #fff3e0; color: #ef6c00; }
+.status-aprovado { 
+    background-color: rgba(86, 199, 189, 0.2); /* verde água claro */
+    color: #56c7bd; /* verde água */
+}
+.status-rejeitado { 
+    background-color: rgba(236, 63, 120, 0.2); /* rosa escuro claro */
+    color: #ec3f78; /* rosa escuro */
+}
+.status-pendente { 
+    background-color: rgba(251, 212, 73, 0.2); 
+    color: #f07839; /* laranja */
+}
 
 /* Forms */
 .form-group {
@@ -327,7 +257,7 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #1976d2;
+    border-color: #808eea;
 }
 
 .form-textarea {
@@ -368,7 +298,7 @@ body {
 .modal-title {
     font-size: 20px;
     font-weight: 600;
-    color: #333;
+    color: #808eea; /* azul lavanda para o título do modal */
 }
 
 .close-btn {
@@ -387,10 +317,27 @@ body {
     display: block;
 }
 
-/* Footer styles (ensure it's at the bottom) */
+/* Logout button (se não estiver no CSS da sidebar) */
+.logout {
+    display: block;
+    padding: 12px 20px;
+    background-color: #ec3f78; 
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 20px 0px 20px; 
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+    background-color: #d1376a; 
+}
+
 footer {
     padding: 15px 30px;
-    background-color: #f0f0f0;
+    background-color: #fcfbfa; /* branco gelo */
     border-top: 1px solid #e0e0e0;
     text-align: center;
     font-size: 12px;

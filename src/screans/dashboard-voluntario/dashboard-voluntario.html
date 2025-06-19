@@ -5,43 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard do Voluntário</title>
     <link rel="stylesheet" href="dashboard-voluntario.css"/>
+    <link rel="stylesheet" href="../lista-oficinas/lista-oficinas.css"/>
+    <link rel="stylesheet" href="../historico-solicitacoes/historico-solicitacoes.css"/>
+    <link rel="stylesheet" href="../../components/menu-lateral-voluntario/menulateral-voluntario.css"/> 
 </head>
 <body>
     <div class="container">
-        <div class="sidebar">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">Sistema Oficinas</span>
-            </div>
-            
-            <nav class="menu">
-                <a href="#" class="menu-item active" onclick="showScreen('dashboard')">
-                    <div class="menu-icon dashboard-icon"></div>
-                    Dashboard
-                </a>
-                <a href="#" class="menu-item" onclick="showScreen('lista-oficinas')">
-                    <div class="menu-icon oficinas-icon"></div>
-                    Lista de Oficinas
-                </a>
-                <a href="#" class="menu-item" onclick="showScreen('historico-solicitacoes')">
-                    <div class="menu-icon certificados-icon"></div>
-                    Histórico de Solicitações
-                </a>
-                <a href="#" class="menu-item" onclick="showScreen('solicitar-certificado')">
-                    <div class="menu-icon certificado-add-icon"></div> Solicitar Certificado
-                </a>
-                <a href="#" class="menu-item" onclick="showScreen('perfil')">
-                    <div class="menu-icon perfil-icon"></div>
-                    Meu Perfil
-                </a>
-            </nav>
-
-            <div class="user-info">
-                <div class="user-name" id="user-name">Carregando...</div>
-                <div class="user-role" id="user-role">Voluntário</div>
-            </div>
-            <a href="#" class="logout" id="logout-btn">Sair</a>
-        </div>
+        <div id="sidebar-container"></div> 
 
         <div class="main-content">
             <div class="screen active" id="dashboard">
@@ -92,41 +62,10 @@
                 </div>
             </div>
 
-            <div class="screen" id="lista-oficinas">
-                <div class="header">
-                    <h1 class="page-title">Lista de Oficinas</h1>
-                </div>
-                <div class="content">
-                    <p>Conteúdo da tela Lista de Oficinas.</p>
-                </div>
-            </div>
-
-            <div class="screen" id="historico-solicitacoes">
-                <div class="header">
-                    <h1 class="page-title">Histórico de Solicitações</h1>
-                </div>
-                <div class="content">
-                    <p>Conteúdo da tela Histórico de Solicitações.</p>
-                </div>
-            </div>
-
-            <div class="screen" id="solicitar-certificado">
-                <div class="header">
-                    <h1 class="page-title">Solicitar Certificado</h1>
-                </div>
-                <div class="content">
-                    <p>Conteúdo da tela Solicitar Certificado (formulário).</p>
-                </div>
-            </div>
-
-            <div class="screen" id="perfil">
-                <div class="header">
-                    <h1 class="page-title">Meu Perfil</h1>
-                </div>
-                <div class="content">
-                    <p>Conteúdo da tela Meu Perfil.</p>
-                </div>
-            </div>
+            <div class="screen" id="lista-oficinas"></div>
+            <div class="screen" id="historico-solicitacoes"></div>
+            <div class="screen" id="solicitar-certificado"></div>
+            <div class="screen" id="perfil"></div>
 
         </div>
     </div>

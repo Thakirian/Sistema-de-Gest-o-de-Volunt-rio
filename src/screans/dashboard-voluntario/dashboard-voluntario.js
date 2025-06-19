@@ -1,43 +1,113 @@
 // src/screens/dashboard-voluntario/dashboard-voluntario.js
 import { auth_mod, db } from "../../firebase/firebase-config.js";
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const userNameDisplay = document.getElementById('user-name');
-    const userRoleDisplay = document.getElementById('user-role');
-    const logoutBtn = document.getElementById('logout-btn');
+// Importa a função de inicialização da tela de lista de oficinas
+import { initListaOficinas } from '../lista-oficinas/lista-oficinas.js';
 
-    // Elementos dos cartões de estatísticas (ajustados para as novas métricas)
+// Importa a função de inicialização da tela de histórico de solicitações
+import { initHistoricoSolicitacoes } from '../historico-solicitacoes/historico-solicitacoes.js'; 
+
+// Importa a função de inicialização do componente menu lateral do voluntário
+import { initMenuLateralVoluntario } from '../../components/menu-lateral-voluntario/menulateral-voluntario.js';
+
+
+document.addEventListener('DOMContentLoaded', async () => {
     const horasAcumuladasDisplay = document.getElementById('horas-acumuladas');
-    const horasMesDisplay = document.getElementById('horas-mes'); // Para horas do último mês
+    const horasMesDisplay = document.getElementById('horas-mes');
     const totalOficinasListadasDisplay = document.getElementById('total-oficinas-listadas');
     const oficinasAtivasInfoDisplay = document.getElementById('oficinas-ativas-info');
     const solicitacoesPendentesDisplay = document.getElementById('solicitacoes-pendentes');
-
-    // Tabela de solicitações recentes na dashboard
     const minhasSolicitacoesTableBody = document.getElementById('minhas-solicitacoes-table').querySelector('tbody');
 
-    // Função para mostrar a tela correta (Dashboard, Lista de Oficinas, etc.)
-    window.showScreen = (screenId) => {
+    const sidebarContainer = document.getElementById('sidebar-container');
+
+    // Define os caminhos para as outras telas que serão carregadas dinamicamente
+    const screenPaths = {
+        'lista-oficinas': '../lista-oficinas/lista-oficinas.html', 
+        'historico-solicitacoes': '../historico-solicitacoes/historico-solicitacoes.html',
+        // 'solicitar-certificado': '../solicitar-certificado/solicitar-certificado.html',
+        // 'perfil': '../perfil/perfil.html'
+    };
+
+    // Define as funções de inicialização para as outras telas (se houver JS específico para elas)
+    const screenInitializers = {
+        'lista-oficinas': initListaOficinas,
+        'historico-solicitacoes': initHistoricoSolicitacoes,
+        // 'solicitar-certificado': initSolicitarCertificado,
+        // 'perfil': initPerfil,
+    };
+
+    // Função para carregar o conteúdo HTML de uma tela secundária
+    async function loadScreenContent(screenId, path) {
+        try {
+            const response = await fetch(path);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const htmlContent = await response.text();
+            document.getElementById(screenId).innerHTML = htmlContent;
+        } catch (error) {
+            console.error(`Erro ao carregar o conteúdo da tela ${screenId} de ${path}:`, error);
+            document.getElementById(screenId).innerHTML = `<p style="color: red;">Erro ao carregar esta seção.</p>`;
+        }
+    }
+
+    // Função principal para mostrar uma tela 
+    window.showScreen = async (screenId) => {
         const screens = document.querySelectorAll('.screen');
         screens.forEach(screen => {
             screen.classList.remove('active');
         });
-        document.getElementById(screenId).classList.add('active');
 
-        // Atualiza o estado "active" no menu lateral
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-            item.classList.remove('active');
-        });
-        const activeMenuItem = document.querySelector(`.menu-item[onclick*="${screenId}"]`);
-        if (activeMenuItem) {
-            activeMenuItem.classList.add('active');
+        const targetScreen = document.getElementById(screenId);
+        targetScreen.classList.add('active');
+
+        // Se a tela ainda não foi carregada e tem um caminho definido
+        if (screenPaths[screenId] && !targetScreen.dataset.loaded) {
+            await loadScreenContent(screenId, screenPaths[screenId]);
+            targetScreen.dataset.loaded = 'true'; // Marca como carregada
+
+            // Se houver uma função de inicialização para esta tela, chame-a
+            if (screenInitializers[screenId]) {
+                screenInitializers[screenId]();
+            }
+        } else if (screenInitializers[screenId] && targetScreen.dataset.loaded) {
+            screenInitializers[screenId]();
         }
+
+        // Atualiza a classe 'active' nos itens do menu lateral
+        const menuItems = document.querySelectorAll('.sidebar .menu-item');
+        menuItems.forEach(item => {
+            if (item.dataset.screenId === screenId) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
     };
 
-    // 1. Verificar Autenticação e Carregar Dados
+    // Lógica para carregar e inicializar o menu lateral do voluntário
+    async function loadAndInitMenuLateralVoluntario(userName, userRole) {
+        try {
+            // Carrega o HTML do menu lateral
+            const response = await fetch('../../components/menu-lateral-voluntario/menulateral-voluntario.html');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const htmlContent = await response.text();
+            sidebarContainer.innerHTML = htmlContent;
+
+            // Inicia o JavaScript do menu lateral, passando a função showScreen
+            initMenuLateralVoluntario(window.showScreen, userName, userRole);
+        } catch (error) {
+            console.error("Erro ao carregar e inicializar o menu lateral do voluntário:", error);
+            sidebarContainer.innerHTML = '<p style="color: red;">Erro ao carregar menu lateral.</p>';
+        }
+    }
+
+    // Observa o estado de autenticação do usuário
     onAuthStateChanged(auth_mod, async (user) => {
         if (user) {
             console.log("Usuário logado:", user.email);
@@ -47,11 +117,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 let voluntarioSnap = await getDoc(voluntarioRef);
                 let userData = voluntarioSnap.data();
                 
-                // --- Início da lógica de inicialização de dados
+                // Inicializa campos padrão se não existirem
                 let needsUpdate = false;
                 const defaultVoluntarioValues = {
                     horasAcumuladas: 0,
-                    horasUltimoMes: 0, 
+                    horasUltimoMes: 0,
                     solicitacoesPendentes: 0,
                 };
 
@@ -68,43 +138,34 @@ document.addEventListener('DOMContentLoaded', async () => {
                     voluntarioSnap = await getDoc(voluntarioRef);
                     userData = voluntarioSnap.data();
                 }
-                // --- Fim da lógica de inicialização de dados ---
 
-                userNameDisplay.textContent = userData.nome || "Voluntário";
-                userRoleDisplay.textContent = "Voluntário";
+                await loadAndInitMenuLateralVoluntario(userData.nome, "Voluntário");
 
-                // --- Preencher os dados da dashboard com valores do Firestore ---
+                // Preenche os dados da dashboard com valores do Firestore
+                if (horasAcumuladasDisplay) horasAcumuladasDisplay.textContent = userData.horasAcumuladas || 0;
+                if (horasMesDisplay) horasMesDisplay.textContent = `Último mês: ${userData.horasUltimoMes || 0}h`;
 
-                // Card: Horas Acumuladas
-                horasAcumuladasDisplay.textContent = userData.horasAcumuladas || 0;
-                horasMesDisplay.textContent = `Último mês: ${userData.horasUltimoMes || 0}h`;
-
-                // Card: Oficinas Listadas 
                 const oficinasCollectionRef = collection(db, "oficinas");
                 const oficinasSnap = await getDocs(oficinasCollectionRef);
                 const totalOficinas = oficinasSnap.size;
-                totalOficinasListadasDisplay.textContent = totalOficinas;
+                if (totalOficinasListadasDisplay) totalOficinasListadasDisplay.textContent = totalOficinas;
                 
-                // Contar oficinas ativas (assumindo campo 'status' no documento da oficina)
                 const qAtivas = query(oficinasCollectionRef, where("status", "==", "ativa"));
                 const oficinasAtivasSnap = await getDocs(qAtivas);
-                oficinasAtivasInfoDisplay.textContent = `Ativas: ${oficinasAtivasSnap.size}`;
+                if (oficinasAtivasInfoDisplay) oficinasAtivasInfoDisplay.textContent = `Ativas: ${oficinasAtivasSnap.size}`;
 
-                // Card: Solicitações Pendentes
                 const solicitacoesCollectionRef = collection(db, "solicitacoesCertificado");
                 const qMinhasSolicitacoesPendentes = query(
                     solicitacoesCollectionRef, 
                     where("voluntarioId", "==", user.uid),
-                    where("status", "==", "pendente") 
+                    where("status", "==", "pendente")
                 );
                 const solicitacoesPendentesSnap = await getDocs(qMinhasSolicitacoesPendentes);
-                solicitacoesPendentesDisplay.textContent = solicitacoesPendentesSnap.size;
+                if (solicitacoesPendentesDisplay) solicitacoesPendentesDisplay.textContent = solicitacoesPendentesSnap.size;
 
-                // --- Preencher tabela de Solicitações Recentes na Dashboard ---
                 if (minhasSolicitacoesTableBody) {
                     minhasSolicitacoesTableBody.innerHTML = '';
 
-                    // Buscar as solicitações do usuário 
                     const qRecentes = query(
                         solicitacoesCollectionRef, 
                         where("voluntarioId", "==", user.uid),
@@ -113,13 +174,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                     let solicitacoesRecentes = recentesSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
                     if (solicitacoesRecentes.length > 0) {
+                        // Ordenar por data
                         solicitacoesRecentes.sort((a, b) => {
                             const dateA = a.dataSolicitacao ? a.dataSolicitacao.toDate() : new Date(0);
                             const dateB = b.dataSolicitacao ? b.dataSolicitacao.toDate() : new Date(0);
                             return dateB.getTime() - dateA.getTime();
                         });
                         
-                        const displayedSolicitations = solicitacoesRecentes.slice(0, 5); // Pega as 5 mais recentes
+                        // Limitar a 5 para exibir na dashboard, se não usar limit no Firestore
+                        const displayedSolicitations = solicitacoesRecentes.slice(0, 5);
 
                         for (const solicitacao of displayedSolicitations) {
                             let nomeOficina = "Oficina Desconhecida";
@@ -152,8 +215,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (error) {
                 console.error("Erro ao carregar ou inicializar dados do voluntário:", error);
                 alert("Erro ao carregar seu perfil. Por favor, tente novamente. Se o problema persistir, contate o suporte.");
-                signOut(auth_mod); 
-                window.location.href = '../login/login.html';
             }
 
         } else {
@@ -161,19 +222,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.location.href = '../login/login.html';
         }
     });
-
-    // 2. Configurar o botão de Logout
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', async (event) => {
-            event.preventDefault();
-            try {
-                await signOut(auth_mod);
-                alert("Você foi desconectado com sucesso!");
-                window.location.href = '../login/login.html';
-            } catch (error) {
-                console.error("Erro ao fazer logout:", error);
-                alert("Erro ao desconectar. Tente novamente.");
-            }
-        });
-    }
 });
