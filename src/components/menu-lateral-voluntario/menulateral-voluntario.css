@@ -1,67 +1,83 @@
-/* src/components/menu-lateral-voluntario/menu-lateral-voluntario.css */
+/* src/components/menu-lateral-voluntario/menulateral-voluntario.css */
+
+/* Paleta de Cores:
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
 
 .sidebar {
     width: 280px;
-    background: white;
+    background: #fcfbfa; /* branco gelo para o fundo da sidebar */
     border-right: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column;
     padding-bottom: 20px; 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05); /* Sutil sombra para destacar */
 }
 
-.logo {
-    padding: 20px;
-    border-bottom: 1px solid #e0e0e0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+/* Container da Logo e Slogan */
+.logo-container {
+    display: flex; /* Para alinhar a imagem e o texto lado a lado */
+    align-items: center; /* Centraliza verticalmente a imagem e o texto */
+    padding: 20px; /* Espaçamento interno */
+    border-bottom: 1px solid #e0e0e0; /* Linha divisória */
+    margin-bottom: 15px; /* Espaço entre a logo e o restante do menu */
+    /* background-color: #fcfbfa; Removido, já é o background da sidebar */
 }
 
-.logo-icon {
-    width: 32px;
-    height: 32px;
-    background: radial-gradient(circle, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3); /* Ou o seu logo atual */
-    border-radius: 50%;
+.logo-image {
+    max-width: 45px; /* Ajuste o tamanho da sua logo aqui */
+    height: auto;
+    margin-right: 10px; /* Espaço entre a logo e o texto */
 }
 
 .logo-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
+    color: #333; /* Cor neutra para o texto, ou use da paleta: #ec3f78 (rosa escuro) */
+    font-size: 16px; /* Tamanho da fonte do slogan */
+    font-weight: 600; /* Deixa o texto em negrito */
+    line-height: 1.2; 
 }
 
+/* Estilos da navegação (menu) */
 .menu {
-    flex: 1; 
-    padding: 20px 0;
+    flex: 1; /* Faz o menu ocupar o espaço restante, empurrando o user-info para baixo */
+    padding: 10px 0; /* Padding vertical para os itens de menu */
 }
 
 .menu-item {
     display: flex;
     align-items: center;
     padding: 12px 20px;
-    color: #666;
+    color: #666; /* Cor padrão do texto do item de menu */
     text-decoration: none;
     font-size: 14px;
-    border-left: 3px solid transparent;
+    border-left: 3px solid transparent; /* Borda para o item ativo */
     transition: all 0.3s ease;
 }
 
 .menu-item:hover {
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: rgba(128, 142, 234, 0.1); /* azul lavanda com 10% de opacidade */
+    color: #808eea; /* azul lavanda */
 }
 
 .menu-item.active {
-    background-color: #e3f2fd;
-    color: #1976d2;
-    border-left-color: #1976d2;
+    background-color: rgba(128, 142, 234, 0.2); /* azul lavanda com 20% de opacidade para o ativo */
+    color: #808eea; /* azul lavanda */
+    border-left-color: #808eea; /* Borda lateral azul lavanda */
+    font-weight: 500; /* Levemente mais negrito */
 }
 
+/* Estilo para os ícones dentro dos itens de menu */
 .menu-icon {
     width: 20px;
     height: 20px;
     margin-right: 12px;
-    background-color: currentColor; 
+    background-color: currentColor; /* Faz o ícone herdar a cor do texto do menu-item */
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -74,39 +90,40 @@
 .certificado-add-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2.5L18.5 9H13V4.5zM17 13h-2v2h-2v-2H9v-2h2V9h2v2h2v2zm-3 4H7v-4h7v4z'/%3E%3C/svg%3E"); }
 .perfil-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"); }
 
-
+/* Informações do Usuário na parte inferior */
 .user-info {
-    padding: 20px;
+    padding: 15px 20px; 
     margin-top: auto; 
     border-top: 1px solid #e0e0e0;
-    background-color: #fafafa;
+    background-color: #fafafa; 
+    text-align: center; 
 }
 
 .user-name {
     font-weight: 500;
-    color: #333;
+    color: #333; /* Cor neutra para o nome */
     margin-bottom: 4px;
 }
 
 .user-role {
     font-size: 12px;
-    color: #666;
+    color: #666; 
 }
 
+/* Botão Sair */
 .logout {
     display: block;
     padding: 12px 20px;
-    background-color: #f44336; 
+    background-color: #ec3f78; 
     color: white;
     text-decoration: none;
     font-size: 14px;
     text-align: center;
-    border-radius: 0 0 8px 8px;
+    margin: 15px 20px 0px 20px; 
+    border-radius: 8px; 
     transition: background-color 0.3s ease;
-    margin: 0 20px 20px 20px;
-    border-radius: 8px;
 }
 
 .logout:hover {
-    background-color: #d32f2f;
+    background-color: #d1376a;
 }
