@@ -19,13 +19,16 @@
                     <div class="menu-icon dashboard-icon"></div>
                     Dashboard
                 </a>
-                <a href="#" class="menu-item" onclick="showScreen('minhas-oficinas')">
+                <a href="#" class="menu-item" onclick="showScreen('lista-oficinas')">
                     <div class="menu-icon oficinas-icon"></div>
-                    Minhas Oficinas
+                    Lista de Oficinas
                 </a>
-                <a href="#" class="menu-item" onclick="showScreen('meus-certificados')">
+                <a href="#" class="menu-item" onclick="showScreen('historico-solicitacoes')">
                     <div class="menu-icon certificados-icon"></div>
-                    Meus Certificados
+                    Histórico de Solicitações
+                </a>
+                <a href="#" class="menu-item" onclick="showScreen('solicitar-certificado')">
+                    <div class="menu-icon certificado-add-icon"></div> Solicitar Certificado
                 </a>
                 <a href="#" class="menu-item" onclick="showScreen('perfil')">
                     <div class="menu-icon perfil-icon"></div>
@@ -48,20 +51,15 @@
                 
                 <div class="content">
                     <div class="stats-grid">
-                        <div class="stat-card oficinas">
+                        <div class="stat-card horas-acumuladas">
                             <div class="stat-number" id="horas-acumuladas">0</div>
                             <div class="stat-label">Horas Acumuladas</div>
-                            <div class="stat-trend" id="horas-mes">Carregando...</div>
+                            <div class="stat-trend" id="horas-mes">Último mês: 0h</div>
                         </div>
-                        <div class="stat-card participantes">
-                            <div class="stat-number" id="oficinas-inscritas">0</div>
-                            <div class="stat-label">Oficinas Inscritas</div>
-                            <div class="stat-trend" id="oficinas-futuras">Carregando...</div>
-                        </div>
-                        <div class="stat-card certificados">
-                            <div class="stat-number" id="certificados-solicitados">0</div>
-                            <div class="stat-label">Certificados Solicitados</div>
-                            <div class="stat-trend" id="certificados-disponiveis">Carregando...</div>
+                        <div class="stat-card oficinas">
+                            <div class="stat-number" id="total-oficinas-listadas">0</div>
+                            <div class="stat-label">Oficinas Listadas</div>
+                            <div class="stat-trend" id="oficinas-ativas-info">Ativas: 0</div>
                         </div>
                         <div class="stat-card pendentes">
                             <div class="stat-number" id="solicitacoes-pendentes">0</div>
@@ -71,20 +69,20 @@
                     </div>
 
                     <div class="section">
-                        <h2 class="section-title">Próximas Oficinas</h2>
+                        <h2 class="section-title">Minhas Solicitações Recentes</h2>
                         <div class="table-container">
-                            <table class="table" id="proximas-oficinas-table">
+                            <table class="table" id="minhas-solicitacoes-table">
                                 <thead>
                                     <tr>
                                         <th>Oficina</th>
-                                        <th>Data</th>
-                                        <th>Local</th>
+                                        <th>Data Solicitação</th>
                                         <th>Status</th>
+                                        <th>Carga Horária</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="4" style="text-align: center;">Nenhuma oficina futura encontrada.</td>
+                                        <td colspan="4" style="text-align: center;">Nenhuma solicitação recente.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -94,21 +92,30 @@
                 </div>
             </div>
 
-            <div class="screen" id="minhas-oficinas">
+            <div class="screen" id="lista-oficinas">
                 <div class="header">
-                    <h1 class="page-title">Minhas Oficinas</h1>
+                    <h1 class="page-title">Lista de Oficinas</h1>
                 </div>
                 <div class="content">
-                    <p>Conteúdo da tela Minhas Oficinas.</p>
+                    <p>Conteúdo da tela Lista de Oficinas.</p>
                 </div>
             </div>
 
-            <div class="screen" id="meus-certificados">
+            <div class="screen" id="historico-solicitacoes">
                 <div class="header">
-                    <h1 class="page-title">Meus Certificados</h1>
+                    <h1 class="page-title">Histórico de Solicitações</h1>
                 </div>
                 <div class="content">
-                    <p>Conteúdo da tela Meus Certificados.</p>
+                    <p>Conteúdo da tela Histórico de Solicitações.</p>
+                </div>
+            </div>
+
+            <div class="screen" id="solicitar-certificado">
+                <div class="header">
+                    <h1 class="page-title">Solicitar Certificado</h1>
+                </div>
+                <div class="content">
+                    <p>Conteúdo da tela Solicitar Certificado (formulário).</p>
                 </div>
             </div>
 

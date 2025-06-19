@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (voluntarioSnap.exists()) {
                 // NOVO: Alert de sucesso para voluntário
                 alert('Login de voluntário realizado com sucesso!'); 
-                window.location.href = '../dashboard/dashboard.html';
+                window.location.href = '../dashboard-voluntario/dashboard-voluntario.html';
             } else if (coordSnap.exists()) {
                 // NOVO: Alert de sucesso para coordenador
                 alert('Login de coordenador realizado com sucesso!'); 
-                window.location.href = '../dashboard/dashboard.html';
+                window.location.href = '../dashboard-coordenador/dashboard-coordenador.html';
             } else {
                 throw new Error("Seu perfil não foi encontrado. Contate o administrador.");
             }

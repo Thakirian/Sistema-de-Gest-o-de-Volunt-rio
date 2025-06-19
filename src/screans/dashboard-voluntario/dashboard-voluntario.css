@@ -1,4 +1,4 @@
-/* Seu CSS atual */
+/* Seu CSS atual, com uma pequena adição para o novo ícone */
 * {
     margin: 0;
     padding: 0;
@@ -9,15 +9,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f5f5f5;
     height: 100vh;
-    /* overflow: hidden; */ /* Removido para permitir rolagem se o conteúdo for maior que a tela */
-    display: flex; /* Adicionado para que o footer fique no final da página */
-    flex-direction: column; /* Adicionado para que o footer fique no final da página */
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     display: flex;
-    flex: 1; /* Permite que o container ocupe o espaço restante */
-    height: 100vh; /* Mantido para manter o layout flexível */
+    flex: 1;
+    height: 100vh;
 }
 
 /* Sidebar */
@@ -90,6 +89,8 @@ body {
 .dashboard-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8v-6h-8v6zm0-18v6h8V3h-8z'/%3E%3C/svg%3E"); }
 .oficinas-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3E%3C/svg%3E"); }
 .certificados-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z'/%3E%3C/svg%3E"); }
+/* Novo ícone para "Solicitar Certificado" (pode ajustar) */
+.certificado-add-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2.5L18.5 9H13V4.5zM17 13h-2v2h-2v-2H9v-2h2V9h2v2h2v2zm-3 4H7v-4h7v4z'/%3E%3C/svg%3E"); }
 .perfil-icon { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"); }
 
 .user-info {
@@ -157,7 +158,7 @@ body {
 .content {
     flex: 1;
     padding: 30px;
-    overflow-y: auto; /* Permite rolagem apenas no conteúdo principal */
+    overflow-y: auto;
 }
 
 /* Dashboard Cards */
@@ -176,10 +177,11 @@ body {
     border-left: 4px solid;
 }
 
-.stat-card.oficinas { border-left-color: #4caf50; }
-.stat-card.participantes { border-left-color: #2196f3; }
-.stat-card.certificados { border-left-color: #ff9800; }
-.stat-card.pendentes { border-left-color: #f44336; }
+.stat-card.horas-acumuladas { border-left-color: #4caf50; } /* Verde para algo positivo */
+.stat-card.oficinas { border-left-color: #2196f3; } /* Azul para algo informativo */
+.stat-card.pendentes { border-left-color: #f44336; } /* Vermelho para algo que precisa de atenção */
+/* Removidos os outros .stat-card classes que não serão mais usadas nos cards */
+
 
 .stat-number {
     font-size: 36px;
@@ -196,11 +198,8 @@ body {
 
 .stat-trend {
     font-size: 12px;
-    color: #4caf50; /* Verde para tendência positiva */
+    color: #4caf50;
 }
-/* Adaptação para tendências negativas ou neutras se necessário */
-/* .stat-trend.negative { color: #f44336; } */
-/* .stat-trend.neutral { color: #666; } */
 
 /* Recent Activities */
 .section {
@@ -300,10 +299,9 @@ body {
     font-weight: 500;
 }
 
-.status-ativa { background-color: #e8f5e8; color: #2e7d32; }
-.status-inativa { background-color: #ffebee; color: #c62828; }
+.status-aprovado { background-color: #e8f5e8; color: #2e7d32; }
+.status-rejeitado { background-color: #ffebee; color: #c62828; }
 .status-pendente { background-color: #fff3e0; color: #ef6c00; }
-.status-aprovado { background-color: #e3f2fd; color: #1565c0; }
 
 /* Forms */
 .form-group {
@@ -397,5 +395,5 @@ footer {
     text-align: center;
     font-size: 12px;
     color: #777;
-    margin-top: auto; /* Empurra o footer para o final se o corpo for flex column */
+    margin-top: auto;
 }
