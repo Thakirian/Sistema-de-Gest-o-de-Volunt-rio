@@ -1,281 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            background-color: #f8f8f8;
-            width: 60px;
-            transition: width 0.3s ease;
-            overflow: hidden;
-            position: fixed;
-            height: 100%;
-            left: 0;
-            top: 0;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .sidebar:hover {
-            width: 200px;
-        }
-
-        .logo {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .logo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            width: 40px;
-            height: 40px;
-            margin: 0 auto;
-            gap: 2px;
-        }
-
-        .logo-square {
-            width: 100%;
-            height: 100%;
-        }
-
-        .logo-square:nth-child(1) { background-color: #36a2eb; }
-        .logo-square:nth-child(2) { background-color: #ffcd56; }
-        .logo-square:nth-child(3) { background-color: #ff9f40; }
-        .logo-square:nth-child(4) { background-color: #4bc0c0; }
-
-        .menu-items {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-
-        .menu-items li {
-            position: relative;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .menu-items li:hover {
-            background-color: #e9e9e9;
-        }
-
-        .menu-items li a {
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            white-space: nowrap;
-            justify-content: center;
-        }
-
-        .sidebar:hover .menu-items li a {
-            justify-content: flex-start;
-        }
-
-        .menu-text {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sidebar:hover .menu-text {
-            opacity: 1;
-        }
-
-        .sub-menu {
-            list-style: none;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding-left: 55px;
-        }
-
-        .menu-items li:hover .sub-menu {
-            max-height: 200px;
-        }
-
-        .sub-menu li {
-            padding: 8px 0;
-        }
-
-        .sub-menu li a {
-            padding: 5px 0;
-            font-size: 14px;
-        }
-
-        .logout {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-        }
-
-        #main-content {
-            flex: 1;
-            padding: 30px;
-            margin-left: 60px;
-            transition: margin-left 0.3s ease;
-        }
-
-        h1 {
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        .ra-periodo {
-            display: flex;
-            gap: 20px;
-        }
-
-        .ra-periodo .form-group {
-            flex: 1;
-        }
-
-        .btn {
-            background-color: #e0e0e0;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            background-color: #d0d0d0;
-        }
-
-        /* Estilo para visualizar espaço no menu quando não há ícones */
-        .menu-placeholder {
-            width: 10px;
-            height: 20px;
-            background-color: #ddd;
-            display: block;
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-
-        .sidebar:hover .menu-placeholder {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="sidebar">
-        <div class="logo">
-            <div class="logo-grid">
-                <div class="logo-square"></div>
-                <div class="logo-square"></div>
-                <div class="logo-square"></div>
-                <div class="logo-square"></div>
+<div class="perfil-voluntario-content">
+    <h1>Meu Perfil</h1>
+    
+    <form id="perfilForm" class="perfil-form">
+        <div class="form-group">
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        
+        <div class="form-row"> <div class="form-group">
+                <label for="ra">RA:</label>
+                <input type="text" id="ra" name="ra" placeholder="Ex: 1234567" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="periodo">Período:</label>
+                <input type="text" id="periodo" name="periodo" placeholder="Ex: 5º Período" required>
             </div>
         </div>
-        <ul class="menu-items">
-            <li>
-                <a href="#">
-                    <div class="menu-placeholder"></div>
-                    <span class="menu-text">Meu Perfil</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="menu-placeholder"></div>
-                    <span class="menu-text">Solicitações</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <div class="menu-placeholder"></div>
-                    <span class="menu-text">Oficinas</span>
-                </a>
-                <ul class="sub-menu">
-                    <li><a href="#"><span class="menu-text">EcoBag</span></a></li>
-                    <li><a href="#"><span class="menu-text">Pelúcia</span></a></li>
-                    <li><a href="#"><span class="menu-text">EcoMural</span></a></li>
-                    <li><a href="#"><span class="menu-text">Novo</span></a></li>
-                </ul>
-            </li>
-            <li class="logout">
-                <a href="#">
-                    <div class="menu-placeholder"></div>
-                    <span class="menu-text">Sair</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <div id="main-content">
-        <h1>Meu Perfil</h1>
         
-        <form>
-            <div class="form-group">
-                <label for="nome">Nome completo</label>
-                <input type="text" id="nome" name="nome">
-            </div>
-            
-            <div class="ra-periodo">
-                <div class="form-group">
-                    <label for="ra">RA</label>
-                    <input type="text" id="ra" name="ra">
-                </div>
-                
-                <div class="form-group">
-                    <label for="periodo">Período</label>
-                    <input type="text" id="periodo" name="periodo">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="curso">Curso</label>
-                <input type="text" id="curso" name="curso">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email">
-            </div>
-            
-            <div class="form-group">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha">
-            </div>
-            
-            <button type="submit" class="btn">Salvar Dados</button>
-        </form>
-    </div>
-</body>
-</html>
+        <div class="form-group">
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso" name="curso" placeholder="Ex: Engenharia de Software" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required disabled title="Para alterar o e-mail, entre em contato com o administrador.">
+            <p class="form-hint">Seu e-mail de login. Para alterá-lo, contate o suporte.</p>
+        </div>
+        
+        <div class="form-group">
+            <label for="senha">Nova Senha (deixe em branco para não alterar):</label>
+            <input type="password" id="senha" name="senha" placeholder="********">
+            <p class="form-hint">Preencha apenas se deseja alterar sua senha.</p>
+        </div>
+        
+        <button type="submit" class="submit-button">Salvar Dados</button>
+        <div id="formMessage" class="form-message"></div>
+    </form>
+</div>

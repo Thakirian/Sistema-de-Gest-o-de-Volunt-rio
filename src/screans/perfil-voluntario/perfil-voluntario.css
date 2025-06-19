@@ -1,0 +1,189 @@
+/* src/screens/perfil-voluntario/perfil-voluntario.css */
+
+/* Paleta de Cores (para referência)
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
+.perfil-voluntario-content {
+    padding: 40px; 
+    background-color: #fcfbfa; 
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    max-width: 650px;
+    margin: 40px auto;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+h1 {
+    font-size: 30px; 
+    margin-bottom: 35px; 
+    font-weight: 700;
+    color: #808eea;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px; 
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px; 
+    font-weight: 600;
+    color: #444; 
+    font-size: 16px; 
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    padding: 14px; 
+    border: 1px solid #dcdcdc; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; 
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: #808eea; 
+    box-shadow: 0 0 0 4px rgba(128, 142, 234, 0.25); 
+    outline: none;
+}
+
+
+.form-group input:disabled {
+    background-color: #e9ecef; 
+    color: #6c757d; 
+    cursor: not-allowed;
+    border-style: dashed; 
+}
+
+.form-hint {
+    font-size: 13.5px;
+    color: #888; 
+    margin-top: 6px; 
+}
+
+.form-row {
+    display: flex;
+    gap: 25px; 
+}
+
+.form-row .form-group {
+    flex: 1; 
+}
+
+
+.submit-button {
+    background-color: #56c7bd; 
+    color: white;
+    padding: 15px 30px; 
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 700; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    align-self: flex-end;
+    margin-top: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+}
+
+.submit-button:hover {
+    background-color: #48a69e; 
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+}
+
+.submit-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+}
+
+.form-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14.5px;
+}
+
+.form-message.success {
+    background-color: rgba(86, 199, 189, 0.15);
+    color: #56c7bd;
+}
+
+.form-message.error {
+    background-color: rgba(236, 63, 120, 0.15);
+    color: #ec3f78;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .perfil-voluntario-content {
+        padding: 25px;
+        margin: 25px auto;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+
+    .form-row {
+        flex-direction: column; /* Em telas menores, os campos ficam um abaixo do outro */
+        gap: 18px;
+    }
+
+    .form-group input,
+    .submit-button {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .form-group label {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .perfil-voluntario-content {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .submit-button {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+}
