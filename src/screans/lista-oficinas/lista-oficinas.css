@@ -1,0 +1,125 @@
+/* src/screens/lista-oficinas/lista-oficinas.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fcfbfa; 
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #333; 
+    margin: 0;
+}
+
+.add-button {
+    background-color: #56c7bd; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #48a59d; 
+}
+
+.content {
+    padding: 0 20px 20px 20px;
+    background-color: #fcfbfa; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-bar button {
+    background-color: #808eea; 
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #6a7ad0; 
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa; 
+    color: #333; 
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: #f2f2f2; 
+}
+
+.action-button {
+    background-color: #f07839; 
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.action-button.ver-detalhes {
+    background-color: #fbd449; 
+    color: #333; 
+}
+
+.action-button.ver-detalhes:hover {
+    background-color: #e5bf3e; 
+}
+
+.action-button:hover {
+    opacity: 0.9; 
+}
+
+.no-oficinas-message {
+    color: #666;
+    font-style: italic;
+}

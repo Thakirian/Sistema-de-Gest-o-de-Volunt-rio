@@ -1,0 +1,32 @@
+<div class="header">
+    <h1 class="page-title">Lista de Oficinas Disponíveis</h1>
+    </div>
+
+<div class="content">
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Buscar oficinas..." />
+        <button id="search-button">Buscar</button>
+    </div>
+
+    <div class="table-container">
+        <table class="table" id="oficinas-table">
+            <thead>
+                <tr>
+                    <th>Nome da Oficina</th>
+                    <th>Descrição</th>
+                    <th>Carga Horária</th>
+                    <th>Local</th>
+                    <th>Data</th>
+                    <th>Vagas</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7" style="text-align: center;">Carregando oficinas...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p id="no-oficinas-message" style="display: none; text-align: center; margin-top: 20px;">Nenhuma oficina encontrada.</p>
+</div>
