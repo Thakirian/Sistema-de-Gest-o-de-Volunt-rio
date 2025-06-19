@@ -1,0 +1,154 @@
+/* src/screens/solicitar-certificado/solicitar-certificado.css */
+
+/* Paleta de Cores (para referência)
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
+.solicitar-certificado-content {
+    padding: 30px;
+    background-color: #fcfbfa; /* Fundo branco gelo */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-width: 700px; /* Limita a largura do formulário para melhor leitura */
+    margin: 30px auto; /* Centraliza o formulário na tela */
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #808eea; /* azul lavanda */
+    text-align: center;
+}
+
+.certificado-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre os grupos de formulário */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #333;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Garante que ocupem a largura total disponível */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #808eea; /* azul lavanda no foco */
+    box-shadow: 0 0 0 3px rgba(128, 142, 234, 0.2); /* Sombra suave no foco */
+    outline: none; /* Remove o outline padrão */
+}
+
+.form-group select {
+    appearance: none; /* Remove a seta padrão do select em alguns navegadores */
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.398L146.2%2C56.602L5.4%2C197.398H287z%22%2F%3E%3C%2Fsvg%3E'); /* Seta customizada */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    padding-right: 30px; /* Espaço para a seta customizada */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar apenas verticalmente */
+    min-height: 80px; /* Altura mínima para o textarea */
+}
+
+.form-hint {
+    font-size: 13px;
+    color: #777;
+    margin-top: 5px;
+}
+
+.submit-button {
+    background-color: #56c7bd; /* verde água */
+    color: white;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center; /* Centraliza o botão se o flex-direction for column */
+    width: fit-content; /* Ajusta a largura ao conteúdo */
+}
+
+.submit-button:hover {
+    background-color: #48a69e; /* Um verde água um pouco mais escuro no hover */
+    transform: translateY(-2px); /* Pequeno efeito de elevação */
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.form-message {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.form-message.success {
+    background-color: rgba(86, 199, 189, 0.15); /* verde água claro */
+    color: #56c7bd; /* verde água */
+}
+
+.form-message.error {
+    background-color: rgba(236, 63, 120, 0.15); /* rosa escuro claro */
+    color: #ec3f78; /* rosa escuro */
+}
+
+/* Responsividade básica para telas menores */
+@media (max-width: 768px) {
+    .solicitar-certificado-content {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    .submit-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

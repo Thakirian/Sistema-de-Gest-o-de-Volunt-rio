@@ -1,0 +1,39 @@
+<div class="solicitar-certificado-content">
+    <h1>Solicitar Certificado</h1>
+    
+    <form id="solicitacaoCertificadoForm" class="certificado-form">
+        <div class="form-group">
+            <label for="oficinaSelect">Selecione a Oficina:</label>
+            <select id="oficinaSelect" name="oficinaId" required>
+                <option value="">Carregando oficinas...</option>
+                </select>
+            <p class="form-hint">Apenas oficinas ativas e elegíveis aparecerão aqui.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="dataParticipacao">Data da Participação (Estimada):</label>
+            <input type="date" id="dataParticipacao" name="dataParticipacao" required>
+            <p class="form-hint">Informe a data aproximada em que você participou da oficina.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="cargaHorariaInput">Carga Horária (Estimada em Horas):</label>
+            <input type="number" id="cargaHorariaInput" name="cargaHoraria" min="1" required>
+            <p class="form-hint">Informe a carga horária em horas que você acredita ter participado.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="papelDesempenhado">Papel Desempenhado na Oficina:</label>
+            <input type="text" id="papelDesempenhado" name="papelDesempenhado" required placeholder="Ex: Facilitador, Participante, Organizador">
+            <p class="form-hint">Descreva brevemente sua função na oficina.</p>
+        </div>
+        
+        <div class="form-group">
+            <label for="detalhes">Detalhes Adicionais (Opcional):</label>
+            <textarea id="detalhes" name="detalhes" rows="4" placeholder="Ex: Breve descrição das atividades realizadas, aprendizados, etc."></textarea>
+            <p class="form-hint">Qualquer informação extra que possa ajudar na aprovação da sua solicitação.</p>
+        </div>
+        <button type="submit" class="submit-button">Enviar Solicitação</button>
+        <div id="formMessage" class="form-message"></div>
+    </form>
+</div>
