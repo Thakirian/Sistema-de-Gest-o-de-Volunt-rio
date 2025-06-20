@@ -3,17 +3,12 @@ import { auth_mod, db } from "../../firebase/firebase-config.js";
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
-// Importa a função de inicialização da tela de lista de oficinas
+// Importa a função de inicialização das telas secundárias
 import { initListaOficinas } from '../lista-oficinas/lista-oficinas.js';
-
-// Importa a função de inicialização da tela de histórico de solicitações
 import { initHistoricoSolicitacoes } from '../historico-solicitacoes/historico-solicitacoes.js'; 
-
-// Importa a função de inicialização da tela de solicitar certificado 
 import { initSolicitarCertificado } from '../solicitar-certificado/solicitar-certificado.js';
-
-// Importa a função de inicialização da tela de perfil do voluntário
-import { initPerfilVoluntario } from '../perfil-voluntario/perfil-voluntario.js'; // Adicione esta linha
+import { initPerfilVoluntario } from '../perfil-voluntario/perfil-voluntario.js';
+import { initDetalhesOficina } from "../detalhes-oficina/detalhes-oficina.js";
 
 
 // Importa a função de inicialização do componente menu lateral do voluntário
@@ -21,29 +16,32 @@ import { initMenuLateralVoluntario } from '../../components/menu-lateral-volunta
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+    // Referências aos elementos da dashboard principal
     const horasAcumuladasDisplay = document.getElementById('horas-acumuladas');
     const horasMesDisplay = document.getElementById('horas-mes');
     const totalOficinasListadasDisplay = document.getElementById('total-oficinas-listadas');
     const oficinasAtivasInfoDisplay = document.getElementById('oficinas-ativas-info');
     const solicitacoesPendentesDisplay = document.getElementById('solicitacoes-pendentes');
-    const minhasSolicitacoesTableBody = document.getElementById('minhas-solicitacoes-table').querySelector('tbody');
+    const minhasSolicitacoesTableBody = document.getElementById('minhas-solicitacoes-table')?.querySelector('tbody');
 
     const sidebarContainer = document.getElementById('sidebar-container');
-
+    
     // Define os caminhos para as outras telas que serão carregadas dinamicamente
     const screenPaths = {
         'lista-oficinas': '../lista-oficinas/lista-oficinas.html', 
         'historico-solicitacoes': '../historico-solicitacoes/historico-solicitacoes.html',
         'solicitar-certificado': '../solicitar-certificado/solicitar-certificado.html',
-        'perfil': '../perfil-voluntario/perfil-voluntario.html'
+        'perfil': '../perfil-voluntario/perfil-voluntario.html',
+        'detalhes-oficina': '../detalhes-oficina/detalhes-oficina.html'
     };
 
-    // Define as funções de inicialização para as outras telas (se houver JS específico para elas)
+    // Define as funções de inicialização para as outras telas
     const screenInitializers = {
         'lista-oficinas': initListaOficinas,
         'historico-solicitacoes': initHistoricoSolicitacoes,
         'solicitar-certificado': initSolicitarCertificado,
-        'perfil': initPerfilVoluntario
+        'perfil': initPerfilVoluntario,
+        'detalhes-oficina': initDetalhesOficina
     };
 
     // Função para carregar o conteúdo HTML de uma tela secundária
@@ -54,35 +52,69 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const htmlContent = await response.text();
-            document.getElementById(screenId).innerHTML = htmlContent;
+            const targetScreen = document.getElementById(screenId); 
+            if (targetScreen) {
+                targetScreen.innerHTML = htmlContent;
+            } else {
+                console.error(`[loadScreenContent] Erro: targetScreen para '${screenId}' é null. Isso não deveria acontecer se showScreen verificou.`);
+            }
         } catch (error) {
             console.error(`Erro ao carregar o conteúdo da tela ${screenId} de ${path}:`, error);
-            document.getElementById(screenId).innerHTML = `<p style="color: red;">Erro ao carregar esta seção.</p>`;
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.innerHTML = `<p style="color: red;">Erro ao carregar esta seção.</p>`;
+            }
         }
     }
 
-    // Função principal para mostrar uma tela 
-    window.showScreen = async (screenId) => {
-        const screens = document.querySelectorAll('.screen');
-        screens.forEach(screen => {
+    // Função principal para mostrar uma tela - AGORA ACEITA PARÂMETROS!
+    window.showScreen = async (screenId, params = {}) => {
+        console.log(`[showScreen] Tentando navegar para a tela: ${screenId} com params:`, params);
+
+        const allScreens = document.querySelectorAll('.screen');
+        if (allScreens.length === 0) {
+            console.error("[showScreen] Nenhuma div com a classe 'screen' encontrada no DOM. O HTML pode não estar correto.");
+            alert("Erro interno: Estrutura de tela principal não encontrada.");
+            return;
+        }
+
+        // Esconde todas as telas
+        allScreens.forEach(screen => {
             screen.classList.remove('active');
         });
 
-        const targetScreen = document.getElementById(screenId);
-        targetScreen.classList.add('active');
+        let targetScreen = document.getElementById(screenId);
+
+        // *** VERIFICAÇÃO CRÍTICA DO ERRO DE NULL ***
+        if (!targetScreen) {
+            console.error(`[showScreen] ERRO: Div para a tela '${screenId}' NÃO ENCONTRADA no HTML. Verifique o ID: "${screenId}" e a presença da div no dashboard-voluntario.html.`);
+            alert(`Erro interno: A tela "${screenId}" não pôde ser carregada. Por favor, tente novamente ou contate o suporte.`);
+            return; // Sai da função para evitar o TypeError
+        }
+        console.log(`[showScreen] Div encontrada para '${screenId}':`, targetScreen); 
 
         // Se a tela ainda não foi carregada e tem um caminho definido
         if (screenPaths[screenId] && !targetScreen.dataset.loaded) {
             await loadScreenContent(screenId, screenPaths[screenId]);
             targetScreen.dataset.loaded = 'true'; // Marca como carregada
+            console.log(`[showScreen] HTML da tela '${screenId}' carregado e injetado.`);
 
-            // Se houver uma função de inicialização para esta tela, chame-a
+            // Chama a função de inicialização, passando os parâmetros
             if (screenInitializers[screenId]) {
-                screenInitializers[screenId]();
+                // Passa o objeto 'params' completo para a função de inicialização
+                await screenInitializers[screenId](params); 
+                console.log(`[showScreen] Função de inicialização para '${screenId}' executada com parâmetros.`);
+            } else {
+                console.warn(`[showScreen] Função de inicialização para a tela '${screenId}' não encontrada.`);
             }
         } else if (screenInitializers[screenId] && targetScreen.dataset.loaded) {
-            screenInitializers[screenId]();
+            // Se a tela já foi carregada, apenas reinicializa se necessário (passa params novamente)
+            await screenInitializers[screenId](params); 
+            console.log(`[showScreen] Função de inicialização para '${screenId}' re-executada.`);
         }
+        
+        targetScreen.classList.add('active'); 
+        console.log(`[showScreen] Classe 'active' adicionada à tela '${screenId}'.`);
 
         // Atualiza a classe 'active' nos itens do menu lateral
         const menuItems = document.querySelectorAll('.sidebar .menu-item');
@@ -98,19 +130,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Lógica para carregar e inicializar o menu lateral do voluntário
     async function loadAndInitMenuLateralVoluntario(userName, userRole) {
         try {
-            // Carrega o HTML do menu lateral
             const response = await fetch('../../components/menu-lateral-voluntario/menulateral-voluntario.html');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const htmlContent = await response.text();
-            sidebarContainer.innerHTML = htmlContent;
-
-            // Inicia o JavaScript do menu lateral, passando a função showScreen
-            initMenuLateralVoluntario(window.showScreen, userName, userRole);
+            if (sidebarContainer) {
+                sidebarContainer.innerHTML = htmlContent;
+                initMenuLateralVoluntario(window.showScreen, userName, userRole);
+            } else {
+                console.error("Sidebar container não encontrado.");
+            }
         } catch (error) {
             console.error("Erro ao carregar e inicializar o menu lateral do voluntário:", error);
-            sidebarContainer.innerHTML = '<p style="color: red;">Erro ao carregar menu lateral.</p>';
+            if (sidebarContainer) {
+                sidebarContainer.innerHTML = '<p style="color: red;">Erro ao carregar menu lateral.</p>';
+            }
         }
     }
 
@@ -188,7 +223,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                             return dateB.getTime() - dateA.getTime();
                         });
                         
-                        // Limitar a 5 para exibir na dashboard, se não usar limit no Firestore
                         const displayedSolicitations = solicitacoesRecentes.slice(0, 5);
 
                         for (const solicitacao of displayedSolicitations) {
