@@ -1,149 +1,104 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Oficinas</title>
-    
-</head>
-<body>
-     <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">Sistema Oficinas</span>
-            </div>
-            
-            <nav class="menu">
-                <a href="../dashboard/dashboard.html" class="menu-item active" onclick="showScreen('dashboard')">
-                    <div class="menu-icon dashboard-icon"></div>
-                    Dashboard
-                </a>
-                <a href="../gerenciar-oficinas/gerenciar-oficinas.html" class="menu-item" onclick="showScreen('oficinas')">
-                    <div class="menu-icon oficinas-icon"></div>
-                    Gerenciar Oficinas
-                </a>
-                <a href="../solicitacoes-coordenador/solicitacoes-coordenador.html" class="menu-item" onclick="showScreen('certificados')">
-                    <div class="menu-icon certificados-icon"></div>
-                    Solicitações de Certificado
-                </a>
-                <a href="../perfil-coordenador/perfil-coordenador.html" class="menu-item" onclick="showScreen('perfil')">
-                    <div class="menu-icon perfil-icon"></div>
-                    Perfil / Meus Dados
-                </a>
-            </nav>
+<div class="header">
+    <h1 class="page-title">Gerenciar Oficinas</h1>
+    <div class="header-actions">
+        <button class="btn btn-primary" id="btnNovaOficina">+ Nova Oficina</button>
+    </div>
+</div>
 
-            <div class="user-info">
-                <div class="user-name">João Silva</div>
-                <div class="user-role">Coordenador</div>
-            </div>
-             <a href="../login/login.html" class="logout">Sair</a>
+<div class="content">
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome da Oficina</th>
+                    <th>Descrição</th> <th>Instrutor</th>
+                    <th>Carga Horária</th> <th>Data Início</th>
+                    <th>Vagas</th> <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="oficinasTableBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="novaOficinaModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalOficinaTitle">Nova Oficina</h2>
+            <button class="close-btn" onclick="closeModal('novaOficinaModal')">&times;</button>
         </div>
-        
-    <!-- Gerenciar Oficinas Screen -->
-    <div class="screen" id="oficinas">
-        <div class="header">
-            <h1 class="page-title">Gerenciar Oficinas</h1>
-            <div class="header-actions">
-                <button class="btn btn-primary" onclick="openModal('novaOficinaModal')">+ Nova Oficina</button>
+        <form id="oficinaForm">
+            <input type="hidden" id="oficinaId"> <div class="form-group">
+                <label class="form-label" for="nomeOficina">Nome da Oficina</label>
+                <input type="text" class="form-input" id="nomeOficina" placeholder="Digite o nome da oficina" required>
             </div>
+            <div class="form-group">
+                <label class="form-label" for="descricaoOficina">Descrição</label>
+                <textarea class="form-input form-textarea" id="descricaoOficina" placeholder="Descreva a oficina..."></textarea>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" for="instrutorOficina">Instrutor</label>
+                    <input type="text" class="form-input" id="instrutorOficina" placeholder="Nome do instrutor" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="cargaHorariaOficina">Carga Horária</label>
+                    <input type="number" class="form-input" id="cargaHorariaOficina" placeholder="40" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="dataInicioOficina">Data de Início</label>
+                    <input type="date" class="form-input" id="dataInicioOficina" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="localOficina">Local da Oficina</label>
+                    <input type="text" class="form-input" id="localOficina" placeholder="Ex: Sala 101, Online" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="imagemOficina">URL da Imagem da Oficina</label>
+                    <input type="url" class="form-input" id="imagemOficina" placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="vagasOficina">Vagas Disponíveis</label>
+                    <input type="number" class="form-input" placeholder="30" min="1" id="vagasOficina" required>
+                </div>
+                 <div class="form-group">
+                    <label class="form-label" for="statusOficina">Status</label>
+                    <select class="form-input" id="statusOficina" required>
+                        <option value="ativa">Ativa</option>
+                        <option value="inativa">Inativa</option>
+                        <option value="concluida">Concluída</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnSalvarOficina">Criar Oficina</button>
+                <button type="button" class="btn" onclick="closeModal('novaOficinaModal')">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="participantesModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Participantes da Oficina: <span id="oficinaNomeParticipantes"></span></h2>
+            <button class="close-btn" onclick="closeModal('participantesModal')">&times;</button>
         </div>
-        
-        <div class="content">
-            <div class="table-container">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nome da Oficina</th>
-                            <th>Instrutor</th>
-                            <th>Participantes</th>
-                            <th>Data Início</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Excel Avançado</td>
-                            <td>Maria Santos</td>
-                            <td>45</td>
-                            <td>15/06/2025</td>
-                            <td><span class="status-badge status-ativa">Ativa</span></td>
-                            <td>
-                                <button class="btn">Editar</button>
-                                <button class="btn">Ver Detalhes</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>PowerBI para Iniciantes</td>
-                            <td>João Oliveira</td>
-                            <td>32</td>
-                            <td>10/06/2025</td>
-                            <td><span class="status-badge status-ativa">Ativa</span></td>
-                            <td>
-                                <button class="btn">Editar</button>
-                                <button class="btn">Ver Detalhes</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Python Básico</td>
-                            <td>Ana Silva</td>
-                            <td>28</td>
-                            <td>20/06/2025</td>
-                            <td><span class="status-badge status-inativa">Inativa</span></td>
-                            <td>
-                                <button class="btn">Editar</button>
-                                <button class="btn">Ver Detalhes</button>
-                            </td>
-                        </tr>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome do Participante</th>
+                        <th>Email</th>
+                        <th>Status Inscrição</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="participantesTableBody">
                     </tbody>
-                </table>
-            </div>
+            </table>
         </div>
     </div>
-
-    <!-- Modal Nova Oficina -->
-    <div id="novaOficinaModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Nova Oficina</h2>
-                <button class="close-btn" onclick="closeModal('novaOficinaModal')">&times;</button>
-            </div>
-            <form onsubmit="handleFormSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label">Nome da Oficina</label>
-                    <input type="text" class="form-input" placeholder="Digite o nome da oficina" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Descrição</label>
-                    <textarea class="form-input form-textarea" placeholder="Descreva a oficina..."></textarea>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label">Instrutor</label>
-                        <input type="text" class="form-input" placeholder="Nome do instrutor" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Carga Horária</label>
-                        <input type="number" class="form-input" placeholder="40" min="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Data de Início</label>
-                        <input type="date" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Vagas Disponíveis</label>
-                        <input type="number" class="form-input" placeholder="30" min="1" required>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Criar Oficina</button>
-                    <button type="button" class="btn" onclick="closeModal('novaOficinaModal')">Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    
-</body>
-</html>
+</div>
