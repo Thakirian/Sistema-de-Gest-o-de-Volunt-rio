@@ -1,104 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Oficinas</title>
+<div class="perfil-coordenador-content">
+    <h1>Meu Perfil</h1>
     
-</head>
-<body>
-     <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">Sistema Oficinas</span>
-            </div>
-            
-            <nav class="menu">
-                <a href="../dashboard/dashboard.html" class="menu-item active" onclick="showScreen('dashboard')">
-                    <div class="menu-icon dashboard-icon"></div>
-                    Dashboard
-                </a>
-                <a href="../gerenciar-oficinas/gerenciar-oficinas.html" class="menu-item" onclick="showScreen('oficinas')">
-                    <div class="menu-icon oficinas-icon"></div>
-                    Gerenciar Oficinas
-                </a>
-                <a href="../solicitacoes-coordenador/solicitacoes-coordenador.html" class="menu-item" onclick="showScreen('certificados')">
-                    <div class="menu-icon certificados-icon"></div>
-                    Solicitações de Certificado
-                </a>
-                <a href="../perfil-coordenador/perfil-coordenador.html" class="menu-item" onclick="showScreen('perfil')">
-                    <div class="menu-icon perfil-icon"></div>
-                    Perfil / Meus Dados
-                </a>
-            </nav>
-
-            <div class="user-info">
-                <div class="user-name">João Silva</div>
-                <div class="user-role">Coordenador</div>
-            </div>
-             <a href="../login/login.html" class="logout">Sair</a>
+    <form id="perfilFormCoordenador" class="perfil-form">
+        <div class="form-group">
+            <label for="nomeCoordenador">Nome completo:</label>
+            <input type="text" id="nomeCoordenador" name="nomeCoordenador" required>
         </div>
-       
-       <!-- Perfil Screen -->
-            <div class="screen" id="perfil">
-                <div class="header">
-                    <h1 class="page-title">Perfil / Meus Dados</h1>
-                    <div class="header-actions">
-                        <button class="btn btn-primary">Salvar Alterações</button>
-                    </div>
-                </div>
-                
-                <div class="content">
-                    <div class="section">
-                        <h2 class="section-title">Informações Pessoais</h2>
-                        <form>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                <div class="form-group">
-                                    <label class="form-label">Nome Completo</label>
-                                    <input type="text" class="form-input" value="João Silva">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" class="form-input" value="joao.silva@sistema.com">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Telefone</label>
-                                    <input type="tel" class="form-input" value="(43) 9999-9999">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Cargo</label>
-                                    <input type="text" class="form-input" value="Coordenador" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Biografia</label>
-                                <textarea class="form-input form-textarea" placeholder="Conte um pouco sobre você...">Coordenador com 10 anos de experiência em gestão de programas educacionais e desenvolvimento de capacitação profissional.</textarea>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="section">
-                        <h2 class="section-title">Alterar Senha</h2>
-                        <form style="max-width: 400px;">
-                            <div class="form-group">
-                                <label class="form-label">Senha Atual</label>
-                                <input type="password" class="form-input">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Nova Senha</label>
-                                <input type="password" class="form-input">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Confirmar Nova Senha</label>
-                                <input type="password" class="form-input">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Alterar Senha</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        
+        <div class="form-group">
+            <label for="emailCoordenador">E-mail:</label>
+            <input type="email" id="emailCoordenador" name="emailCoordenador" required disabled title="Para alterar o e-mail, entre em contato com o administrador.">
+            <p class="form-hint">Seu e-mail de login. Para alterá-lo, contate o suporte.</p>
         </div>
-    </div>
-</body>
-</html>
+        
+        <div class="form-group">
+            <label for="senhaCoordenador">Nova Senha (deixe em branco para não alterar):</label>
+            <input type="password" id="senhaCoordenador" name="senhaCoordenador" placeholder="********">
+            <p class="form-hint">Preencha apenas se deseja alterar sua senha.</p>
+        </div>
+        
+        <button type="submit" class="submit-button">Salvar Dados</button>
+        <div id="formMessageCoordenador" class="form-message"></div>
+    </form>
+</div>
