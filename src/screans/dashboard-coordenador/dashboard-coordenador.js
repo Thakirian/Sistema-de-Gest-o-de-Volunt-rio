@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
 
 // Importa as funções de inicialização para as outras telas do Coordenador
-// import { initGerenciarOficinas } from '../gerenciar-oficinas/gerenciar-oficinas.js';
+import { initGerenciarOficinas } from '../gerenciar-oficinas/gerenciar-oficinas.js';
 // import { initSolicitacoesCoordenador } from '../solicitacoes-coordenador/solicitacoes-coordenador.js';
 // import { initPerfilCoordenador } from '../perfil-coordenador/perfil-coordenador.js';
 
@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Define os caminhos para as outras telas que serão carregadas dinamicamente
     const screenPaths = {
-        // 'gerenciar-oficinas': '../gerenciar-oficinas/gerenciar-oficinas.html',
+        'gerenciar-oficinas': '../gerenciar-oficinas/gerenciar-oficinas.html',
         // 'solicitacoes-coordenador': '../solicitacoes-coordenador/solicitacoes-coordenador.html',
         // 'perfil-coordenador': '../perfil-coordenador/perfil-coordenador.html'
     };
 
     // Define as funções de inicialização para as outras telas (se houver JS específico para elas)
     const screenInitializers = {
-        // 'gerenciar-oficinas': initGerenciarOficinas,
+        'gerenciar-oficinas': initGerenciarOficinas,
         // 'solicitacoes-coordenador': initSolicitacoesCoordenador,
         // 'perfil-coordenador': initPerfilCoordenador
     };
