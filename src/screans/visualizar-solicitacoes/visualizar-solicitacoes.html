@@ -1,0 +1,58 @@
+<div class="screen-header">
+    <h2 class="page-title">Solicitações de Certificado</h2>
+    <div class="header-actions">
+        </div>
+</div>
+
+<div class="content-section">
+    <div class="filters-container">
+        <input type="text" id="searchSolicitacoesInput" placeholder="Buscar por nome do voluntário, oficina..." class="search-input">
+        <select id="filterStatusSelect" class="filter-select">
+            <option value="">Todos os Status</option>
+            <option value="pendente">Pendente</option>
+            <option value="aprovado">Aprovado</option>
+            <option value="rejeitado">Rejeitado</option>
+        </select>
+        <button id="applyFiltersBtn" class="btn btn-action">Aplicar Filtros</button>
+    </div>
+
+    <div class="table-container">
+        <table class="table" id="solicitacoesTable">
+            <thead>
+                <tr>
+                    <th>Voluntário</th>
+                    <th>Oficina</th>
+                    <th>Data Solicitação</th>
+                    <th>Carga Horária Solicitada</th> 
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="solicitacoesTableBody">
+                </tbody>
+        </table>
+        <p id="noSolicitacoesMessage" class="no-records-message" style="display: none;">Nenhuma solicitação encontrada.</p>
+    </div>
+</div>
+
+<div id="detalhesSolicitacaoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="window.closeModal('detalhesSolicitacaoModal')">&times;</span>
+        <h3 id="modalDetalhesTitle">Detalhes da Solicitação</h3>
+        <div class="modal-body">
+            <p><strong>Voluntário:</strong> <span id="detalhesVoluntarioNome"></span> (<span id="detalhesVoluntarioEmail"></span>)</p>
+            <p><strong>Oficina:</strong> <span id="detalhesOficinaNome"></span></p>
+            <p><strong>Descrição da Oficina:</strong> <span id="detalhesOficinaDescricao"></span></p>
+            <p><strong>Carga Horária da Oficina:</strong> <span id="detalhesOficinaCargaHoraria"></span>h</p>
+            <p><strong>Data da Oficina:</strong> <span id="detalhesOficinaData"></span></p>
+            <p><strong>Data da Solicitação:</strong> <span id="detalhesDataSolicitacao"></span></p>
+            <p><strong>Status Atual:</strong> <span id="detalhesStatusAtual" class="status-badge"></span></p>
+            <p><strong>Observações do Voluntário:</strong> <span id="detalhesObservacoes"></span></p>
+        </div>
+        <div class="modal-footer">
+            <button id="btnAprovarSolicitacao" class="btn btn-success">Aprovar</button>
+            <button id="btnRejeitarSolicitacao" class="btn btn-danger">Rejeitar</button>
+            <button class="btn btn-secondary" onclick="window.closeModal('detalhesSolicitacaoModal')">Fechar</button>
+        </div>
+    </div>
+</div>
