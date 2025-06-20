@@ -1,24 +1,33 @@
 // src/screens/lista-oficinas/lista-oficinas.js
 import { db } from "../../firebase/firebase-config.js";
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query } from 'firebase/firestore'; // 'where' não é mais usado para o filtro inicial de status
 
 // Esta função será chamada pelo dashboard-voluntario.js quando a tela for ativada
 export async function initListaOficinas() {
-    console.log("Inicializando tela de Lista de Oficinas...");
+    console.log("Inicializando tela de Lista de Oficinas para Voluntário (Todas as oficinas)...");
 
-    const oficinasTableBody = document.getElementById('oficinas-table').querySelector('tbody');
+    // Obter referências aos elementos do DOM
+    const oficinasTableBody = document.getElementById('oficinas-table')?.querySelector('tbody');
     const noOficinasMessage = document.getElementById('no-oficinas-message');
     const searchInput = document.getElementById('search-input');
-    const searchButton = document.getElementById('search-button'); // Corrigido: Usando 'searchButton' diretamente
+    const searchButton = document.getElementById('search-button');
+
+    // Validação inicial para garantir que os elementos existem
+    if (!oficinasTableBody) {
+        console.error("Elemento 'oficinas-table' ou seu tbody não encontrado. A tela de lista de oficinas pode não estar carregada corretamente.");
+        return; // Sai da função se os elementos essenciais não forem encontrados
+    }
 
     // Função para renderizar as oficinas na tabela
     async function renderOficinas(oficinasToRender) {
         oficinasTableBody.innerHTML = ''; // Limpa o conteúdo atual da tabela
         if (oficinasToRender.length === 0) {
-            noOficinasMessage.style.display = 'block';
+            if (noOficinasMessage) noOficinasMessage.style.display = 'block';
         } else {
-            noOficinasMessage.style.display = 'none';
+            if (noOficinasMessage) noOficinasMessage.style.display = 'none';
             for (const oficina of oficinasToRender) {
+                // Adicione a coluna de Status à tabela para o voluntário, se relevante
+                const statusClass = oficina.status ? `status-${oficina.status.toLowerCase().replace(' ', '-')}` : '';
                 const row = `
                     <tr>
                         <td>${oficina.nome || 'N/A'}</td>
@@ -27,7 +36,7 @@ export async function initListaOficinas() {
                         <td>${oficina.local || 'N/A'}</td>
                         <td>${oficina.dataOficina ? new Date(oficina.dataOficina.seconds * 1000).toLocaleDateString('pt-BR') : 'N/A'}</td>
                         <td>${oficina.vagasDisponiveis !== undefined ? oficina.vagasDisponiveis : 'N/A'} / ${oficina.totalVagas !== undefined ? oficina.totalVagas : 'N/A'}</td>
-                        <td>
+                        <td><span class="${statusClass}">${oficina.status || 'N/A'}</span></td> <td>
                             <button class="action-button ver-detalhes" data-oficina-id="${oficina.id}">Ver Detalhes</button>
                         </td>
                     </tr>
@@ -47,22 +56,21 @@ export async function initListaOficinas() {
 
     // Função para buscar oficinas do Firestore
     async function fetchOficinas(searchTerm = '') {
-        oficinasTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">Carregando oficinas...</td></tr>';
-        noOficinasMessage.style.display = 'none';
+        oficinasTableBody.innerHTML = '<tr><td colspan="8" style="text-align: center;">Carregando oficinas...</td></tr>'; // Colspan ajustado
+        if (noOficinasMessage) noOficinasMessage.style.display = 'none';
 
         try {
             const oficinasCollectionRef = collection(db, "oficinas");
-            let q = oficinasCollectionRef;
-
-            // Filtra por oficinas ativas
-            q = query(q, where("status", "==", "ativa"));
+            // Agora busca TODAS as oficinas, sem filtro de status
+            let q = query(oficinasCollectionRef); // Apenas a coleção, sem cláusula 'where' para status
             
-            const querySnapshot = await getDocs(q);
+            const querySnapshot = await getDocs(q); 
             let oficinas = [];
             querySnapshot.forEach((doc) => {
                 oficinas.push({ id: doc.id, ...doc.data() });
             });
 
+            // Aplica filtro de busca localmente no cliente (se houver termo de busca)
             if (searchTerm) {
                 const lowerSearchTerm = searchTerm.toLowerCase();
                 oficinas = oficinas.filter(oficina => 
@@ -75,8 +83,8 @@ export async function initListaOficinas() {
 
         } catch (error) {
             console.error("Erro ao buscar oficinas:", error);
-            oficinasTableBody.innerHTML = `<tr><td colspan="7" style="color: red; text-align: center;">Erro ao carregar oficinas.</td></tr>`;
-            noOficinasMessage.style.display = 'none';
+            oficinasTableBody.innerHTML = `<tr><td colspan="8" style="color: red; text-align: center;">Erro ao carregar oficinas.</td></tr>`; // Colspan ajustado
+            if (noOficinasMessage) noOficinasMessage.style.display = 'none';
         }
     }
 
@@ -97,19 +105,16 @@ export async function initListaOficinas() {
     }
 
     // Função de clique no botão "Ver Detalhes"
-    // Esta função será o ponto de entrada para a próxima tela (Detalhamento da Oficina)
     async function handleVerDetalhesClick(oficinaId) {
         console.log("Botão Ver Detalhes clicado para oficina:", oficinaId);
-        alert(`Navegar para a tela de Detalhamento da Oficina (ID: ${oficinaId})`);
         
-        // FUTURAMENTE:
-        // Aqui você chamaria a função de navegação do dashboard para a tela de detalhamento.
-        // Por exemplo:
-        // if (window.showScreen) { // Verifica se a função global está disponível
-        //    window.showScreen('detalhamento-oficina', { oficinaId: oficinaId });
-        // } else {
-        //    console.warn("A função 'showScreen' não está definida globalmente para navegação.");
-        // }
+        // Chamada para a função global showScreen do dashboard-voluntario
+        if (window.showScreen) { 
+           window.showScreen('detalhamento-oficina', { oficinaId: oficinaId });
+        } else {
+           console.warn("A função 'showScreen' não está definida globalmente para navegação.");
+           alert(`Detalhes da Oficina (ID: ${oficinaId}). Função de navegação indisponível.`);
+        }
     }
 
     // Carrega as oficinas assim que a tela for inicializada
