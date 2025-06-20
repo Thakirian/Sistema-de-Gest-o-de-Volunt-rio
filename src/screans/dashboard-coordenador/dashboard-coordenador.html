@@ -5,46 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard do Coordenador</title>
     <link rel="stylesheet" href="dashboard-coordenador.css"/>
+    <link rel="stylesheet" href="../../components/menu-lateral-coordenador/menulateral-coordenador.css"/> 
 </head>
 <body>
     <div class="container">
-       <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">Sistema Oficinas</span>
-            </div>
-            
-            <nav class="menu">
-                <a href="../dashboard/dashboard.html" class="menu-item active" onclick="showScreen('dashboard')">
-                    <div class="menu-icon dashboard-icon"></div>
-                    Dashboard
-                </a>
-                <a href="../gerenciar-oficinas/gerenciar-oficinas.html" class="menu-item" onclick="showScreen('oficinas')">
-                    <div class="menu-icon oficinas-icon"></div>
-                    Gerenciar Oficinas
-                </a>
-                <a href="../solicitacoes-coordenador/solicitacoes-coordenador.html" class="menu-item" onclick="showScreen('certificados')">
-                    <div class="menu-icon certificados-icon"></div>
-                    Solicitações de Certificado
-                </a>
-                <a href="../perfil-coordenador/perfil-coordenador.html" class="menu-item" onclick="showScreen('perfil')">
-                    <div class="menu-icon perfil-icon"></div>
-                    Perfil / Meus Dados
-                </a>
-            </nav>
+        <div id="sidebar-container"></div> 
 
-            <div class="user-info">
-                <div class="user-name">João Silva</div>
-                <div class="user-role">Coordenador</div>
-            </div>
-             <a href="../login/login.html" class="logout">Sair</a>
-        </div>
-
-        <!-- Main Content -->
         <div class="main-content">
-            <!-- Dashboard Screen -->
-            <div class="screen active" id="dashboard">
+            <div class="screen active" id="dashboard-coordenador">
                 <div class="header">
                     <h1 class="page-title">Dashboard do Coordenador</h1>
                 </div>
@@ -52,34 +20,77 @@
                 <div class="content">
                     <div class="stats-grid">
                         <div class="stat-card oficinas">
-                            <div class="stat-number">24</div>
+                            <div class="stat-number" id="total-oficinas-ativas">0</div>
                             <div class="stat-label">Oficinas Ativas</div>
-                            <div class="stat-trend">+3 este mês</div>
+                            <div class="stat-trend" id="oficinas-mes">Novas este mês: 0</div>
                         </div>
                         <div class="stat-card participantes">
-                            <div class="stat-number">847</div>
-                            <div class="stat-label">Participantes Ativos</div>
-                            <div class="stat-trend">+127 este mês</div>
-                        </div>
-                        <div class="stat-card certificados">
-                            <div class="stat-number">156</div>
-                            <div class="stat-label">Certificados Emitidos</div>
-                            <div class="stat-trend">+43 esta semana</div>
+                            <div class="stat-number" id="total-voluntarios-cadastrados">0</div>
+                            <div class="stat-label">Voluntários Cadastrados</div>
+                            <div class="stat-trend" id="voluntarios-novos-mes">Novos este mês: 0</div>
                         </div>
                         <div class="stat-card pendentes">
-                            <div class="stat-number">12</div>
+                            <div class="stat-number" id="total-solicitacoes-pendentes">0</div>
                             <div class="stat-label">Solicitações Pendentes</div>
                             <div class="stat-trend">Requer atenção</div>
                         </div>
                     </div>
 
+                    <div class="section">
+                        <h2 class="section-title">Últimas Solicitações de Certificado</h2>
+                        <div class="table-container">
+                            <table class="table" id="ultimas-solicitacoes-certificados-table">
+                                <thead>
+                                    <tr>
+                                        <th>Voluntário</th>
+                                        <th>Oficina</th>
+                                        <th>Data Solicitação</th>
+                                        <th>Status</th>
+                                        <th>Carga Horária</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">Nenhuma solicitação recente.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2 class="section-title">Oficinas Recentes Cadastradas</h2>
+                        <div class="table-container">
+                            <table class="table" id="oficinas-recentes-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nome da Oficina</th>
+                                        <th>Data Início</th>
+                                        <th>Carga Horária</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center;">Nenhuma oficina recente.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <script type="module" src="dashboard-coordenador.js"></script>
+            <div class="screen" id="gerenciar-oficinas"></div>
+            <div class="screen" id="solicitacoes-coordenador"></div>
+            <div class="screen" id="perfil-coordenador"></div>
+
+        </div>
+    </div>
+    <script type="module" src="dashboard-coordenador.js"></script>
     <footer>
         <p>Desenvolvido por Nathália Miyuki, Brenda Beatriz Cristaldo, Giovana Kaori, Vitória Millnitz e Thaisse Kirian Veiga.
             Alunas de Engenharia de Software na UTFPR-CP - 2025</p>
-    </footer>  
+    </footer> 
 </body>
 </html>
