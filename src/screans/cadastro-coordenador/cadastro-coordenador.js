@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             await setDoc(
-                doc(db, "coordenadores", userCredential.user.uid), // COLETÂNEA ALTERADA PARA "coordenadores"
+                doc(db, "coordenadores", userCredential.user.uid), 
                 {
                     uid: userCredential.user.uid,
                     nome,

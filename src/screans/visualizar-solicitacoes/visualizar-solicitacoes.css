@@ -10,25 +10,22 @@
 #fcfbfa - branco gelo
 */
 
-/* Estilos gerais para seções de conteúdo */
 .content-section {
-    background-color: #fcfbfa; /* Branco gelo */
+    background-color: #fcfbfa;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
 }
 
-/* Títulos das telas */
 .screen-header h2.page-title {
-    color: #333; /* Ou #808eea se preferir um azul no título */
+    color: #333;
     margin-bottom: 20px;
     font-size: 1.8em;
-    border-bottom: 2px solid #eee; /* Linha sutil */
+    border-bottom: 2px solid #eee;
     padding-bottom: 10px;
 }
 
-/* Contêiner de filtros */
 .filters-container {
     display: flex;
     gap: 10px;
@@ -40,20 +37,19 @@
 .filters-container .search-input,
 .filters-container .filter-select {
     padding: 10px 15px;
-    border: 1px solid #e0e0e0; /* Bordas mais claras */
+    border: 1px solid #e0e0e0;
     border-radius: 5px;
     font-size: 1em;
     flex-grow: 1;
     max-width: 300px;
-    background-color: #ffffff; /* Fundo branco para inputs */
+    background-color: #ffffff;
     color: #333;
 }
 
 .filters-container .filter-select {
-    background-color: #fcfbfa; /* Fundo leve para select */
+    background-color: #fcfbfa;
 }
 
-/* Estilos da Tabela */
 .table-container {
     overflow-x: auto;
 }
@@ -65,14 +61,14 @@
 }
 
 .table th, .table td {
-    border: 1px solid #f0f0f0; /* Bordas de tabela muito leves */
+    border: 1px solid #f0f0f0;
     padding: 12px 15px;
     text-align: left;
     vertical-align: middle;
 }
 
 .table th {
-    background-color: #f9f9f9; /* Fundo leve para cabeçalho */
+    background-color: #f9f9f9;
     color: #555;
     font-weight: 600;
     text-transform: uppercase;
@@ -80,14 +76,13 @@
 }
 
 .table tr:nth-child(even) {
-    background-color: #fcfbfa; /* Branco gelo */
+    background-color: #fcfbfa;
 }
 
 .table tr:hover {
-    background-color: #e6e6f0; /* Um tom suave de azul lavanda para hover */
+    background-color: #e6e6f0;
 }
 
-/* Mensagem de "Nenhum registro" */
 .no-records-message {
     text-align: center;
     color: #777;
@@ -97,7 +92,6 @@
     margin-top: 20px;
 }
 
-/* Botões de Ação */
 .btn {
     padding: 8px 15px;
     border: none;
@@ -106,54 +100,53 @@
     font-size: 0.9em;
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin-right: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para botões */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
-    transform: translateY(-1px); /* Pequeno efeito de elevação no hover */
+    transform: translateY(-1px);
 }
 
-.btn-action { /* Botão "Aplicar Filtros" */
-    background-color: #808eea; /* Azul lavanda */
+.btn-action {
+    background-color: #808eea;
     color: white;
 }
 .btn-action:hover {
-    background-color: #6a74da; /* Tom mais escuro do azul lavanda */
+    background-color: #6a74da;
 }
 
-.btn-info { /* Botão "Ver Detalhes" */
-    background-color: #56c7bd; /* Verde água */
+.btn-info {
+    background-color: #56c7bd;
     color: white;
 }
 .btn-info:hover {
-    background-color: #43b1a8; /* Tom mais escuro do verde água */
+    background-color: #43b1a8;
 }
 
-.btn-success { /* Botão "Aprovar" */
-    background-color: #28a745; /* Mantido verde padrão para ações de sucesso */
+.btn-success {
+    background-color: #28a745;
     color: white;
 }
 .btn-success:hover {
     background-color: #218838;
 }
 
-.btn-danger { /* Botão "Rejeitar" */
-    background-color: #dc3545; /* Mantido vermelho padrão para ações de perigo */
+.btn-danger {
+    background-color: #dc3545;
     color: white;
 }
 .btn-danger:hover {
     background-color: #c82333;
 }
 
-.btn-secondary { /* Botão "Fechar" */
-    background-color: #6c757d; /* Cinza */
+.btn-secondary {
+    background-color: #6c757d;
     color: white;
 }
 .btn-secondary:hover {
     background-color: #5a6268;
 }
 
-/* Estilos para Status Badges (adaptados à paleta) */
 .status-badge {
     padding: 5px 10px;
     border-radius: 15px;
@@ -167,19 +160,18 @@
 }
 
 .status-pendente {
-    background-color: #fbd449; /* Amarelo */
-    color: #333; /* Texto escuro para contraste no amarelo */
+    background-color: #fbd449;
+    color: #333;
 }
 
 .status-aprovado {
-    background-color: #56c7bd; /* Verde água */
+    background-color: #56c7bd;
 }
 
 .status-rejeitado {
-    background-color: #ec3f78; /* Rosa escuro */
+    background-color: #ec3f78;
 }
 
-/* Estilos do Modal */
 .modal {
     display: none;
     position: fixed;
@@ -195,7 +187,7 @@
 }
 
 .modal-content {
-    background-color: #fcfbfa; /* Branco gelo */
+    background-color: #fcfbfa;
     margin: auto;
     padding: 30px;
     border-radius: 10px;
@@ -219,7 +211,7 @@
 
 .close-button:hover,
 .close-button:focus {
-    color: #ec3f78; /* Rosa escuro no hover */
+    color: #ec3f78;
     text-decoration: none;
 }
 
@@ -244,13 +236,11 @@
     margin-left: 10px;
 }
 
-/* Animação para o modal */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsividade básica */
 @media (max-width: 768px) {
     .filters-container {
         flex-direction: column;

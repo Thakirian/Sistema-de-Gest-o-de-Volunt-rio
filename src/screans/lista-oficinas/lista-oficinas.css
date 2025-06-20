@@ -1,23 +1,33 @@
 /* src/screens/lista-oficinas/lista-oficinas.css */
 
+/* Paleta de Cores:
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid #e0e0e0;
-    background-color: #fcfbfa; 
+    background-color: #fcfbfa;
     margin-bottom: 20px;
 }
 
 .page-title {
     font-size: 24px;
-    color: #333; 
+    color: #333;
     margin: 0;
 }
 
 .add-button {
-    background-color: #56c7bd; 
+    background-color: #56c7bd;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -28,12 +38,12 @@
 }
 
 .add-button:hover {
-    background-color: #48a59d; 
+    background-color: #48a59d;
 }
 
 .content {
     padding: 0 20px 20px 20px;
-    background-color: #fcfbfa; 
+    background-color: #fcfbfa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
@@ -54,7 +64,7 @@
 }
 
 .search-bar button {
-    background-color: #808eea; 
+    background-color: #808eea;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -64,7 +74,7 @@
 }
 
 .search-bar button:hover {
-    background-color: #6a7ad0; 
+    background-color: #6a7ad0;
 }
 
 .table-container {
@@ -82,20 +92,28 @@
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    vertical-align: middle;
 }
 
 .table th {
-    background-color: #f8f9fa; 
-    color: #333; 
+    background-color: #f8f9fa;
+    color: #333;
     font-weight: 600;
 }
 
 .table tbody tr:hover {
-    background-color: #f2f2f2; 
+    background-color: #f2f2f2;
+}
+
+.office-table-image {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
 }
 
 .action-button {
-    background-color: #f07839; 
+    background-color: #f07839;
     color: white;
     border: none;
     padding: 6px 10px;
@@ -107,19 +125,61 @@
 }
 
 .action-button.ver-detalhes {
-    background-color: #fbd449; 
-    color: #333; 
+    background-color: #fbd449;
+    color: #333;
 }
 
 .action-button.ver-detalhes:hover {
-    background-color: #e5bf3e; 
+    background-color: #e5bf3e;
 }
 
 .action-button:hover {
-    opacity: 0.9; 
+    opacity: 0.9;
 }
 
 .no-oficinas-message {
     color: #666;
     font-style: italic;
+}
+
+.status-ativa {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.status-concluida {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.status-cancelada {
+    background-color: #e2e3e5;
+    color: #383d41;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #808eea;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

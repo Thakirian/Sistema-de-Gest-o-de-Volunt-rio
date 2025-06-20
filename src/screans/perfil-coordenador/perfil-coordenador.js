@@ -81,7 +81,7 @@ export async function initPerfilCoordenador() {
                             console.log("Senha atualizada no Firebase Authentication.");
                             formMessage.textContent = "Dados do perfil e senha atualizados com sucesso!";
                             formMessage.classList.add('success');
-                            senhaInput.value = ''; // Limpa o campo de senha após sucesso
+                            senhaInput.value = ''; 
                         } catch (passwordError) {
                             console.error("Erro ao atualizar senha:", passwordError);
                             if (passwordError.code === 'auth/requires-recent-login') {
@@ -91,7 +91,7 @@ export async function initPerfilCoordenador() {
                             }
                             formMessage.classList.add('error');
                             submitButton.disabled = false; 
-                            return; // Sai da função para não mostrar a mensagem de sucesso geral
+                            return;
                         }
                     } else {
                         formMessage.textContent = "Erro: Usuário não autenticado para alterar a senha.";
@@ -100,7 +100,6 @@ export async function initPerfilCoordenador() {
                         return;
                     }
                 } else {
-                    // Se não houve nova senha, apenas dados do perfil foram atualizados
                     formMessage.textContent = "Dados do perfil atualizados com sucesso!";
                     formMessage.classList.add('success');
                 }
@@ -110,7 +109,7 @@ export async function initPerfilCoordenador() {
                 formMessage.textContent = `Erro ao salvar perfil: ${error.message}`;
                 formMessage.classList.add('error');
             } finally {
-                submitButton.disabled = false; // Reabilita o botão ao final, sucesso ou falha
+                submitButton.disabled = false; 
             }
         });
     }

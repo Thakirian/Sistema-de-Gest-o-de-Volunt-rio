@@ -6,21 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('recuperar-form');
     const emailInput = document.getElementById('email');
     const submitBtn = document.querySelector('.submit-button');
-    // Elemento para exibir mensagens de feedback (sucesso ou erro)
     const recuperarMessageDisplay = document.getElementById('recuperar-message');
 
     // Verifica se os elementos essenciais existem antes de adicionar event listeners
     if (!form || !emailInput || !submitBtn || !recuperarMessageDisplay) {
         console.error('Elementos essenciais (formulário, input de e-mail, botão de submit ou display de mensagem) não encontrados no DOM!');
-        return; // Sai da função se algo estiver faltando
+        return; 
     }
 
     form.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Impede o envio padrão do formulário, que recarregaria a página
+        event.preventDefault(); 
 
-        const email = emailInput.value.trim(); // Pega o valor do e-mail e remove espaços em branco
+        const email = emailInput.value.trim(); 
 
-        // Limpa mensagens anteriores e remove classes de estilo para um novo feedback
         recuperarMessageDisplay.textContent = '';
         recuperarMessageDisplay.classList.remove('error-text', 'success-text');
 
@@ -28,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!email) {
             recuperarMessageDisplay.textContent = 'Por favor, insira seu e-mail.';
             recuperarMessageDisplay.classList.add('error-text');
-            return; // Interrompe a execução se o e-mail estiver vazio
+            return; 
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expressão regular para validar formato de e-mail
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
         if (!emailRegex.test(email)) {
             recuperarMessageDisplay.textContent = 'Por favor, insira um e-mail válido.';
             recuperarMessageDisplay.classList.add('error-text');
@@ -47,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const successText = 'Se a conta existir, um e-mail de redefinição de senha foi enviado para ' + email + '.';
             recuperarMessageDisplay.textContent = successText;
-            recuperarMessageDisplay.classList.add('success-text'); // Aplica estilo de sucesso (verde)
+            recuperarMessageDisplay.classList.add('success-text'); 
             
             alert(successText); 
             

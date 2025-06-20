@@ -1,11 +1,7 @@
-// src/screens/detalhes-oficina/detalhes-oficina.js
 import { db } from "../../firebase/firebase-config.js";
 import { doc, getDoc } from 'firebase/firestore';
 
-// A função initDetalhesOficina agora aceita um objeto 'params'
-// e extrai o 'officeId' dele.
 export async function initDetalhesOficina(params) {
-    // Extrai officeId do objeto params com segurança
     const officeId = params?.officeId; 
 
     console.log(`Inicializando tela de Detalhes da Oficina para ID: ${officeId}`);
@@ -16,12 +12,11 @@ export async function initDetalhesOficina(params) {
     const officeHoursText = document.getElementById('office-hours-text');
     const officeLocationText = document.getElementById('office-location-text');
     const officeStatusText = document.getElementById('office-status-text');
-    const officeCoordinatorText = document.getElementById('office-coordinator-text');
+    const officeCoordinatorText = document.getElementById('office-coordinator-text'); 
     const formMessage = document.getElementById('formMessage');
     const solicitarCertificadoBtn = document.getElementById('solicitarCertificadoBtn');
     const voltarParaListaBtn = document.getElementById('voltarParaLista');
 
-    // Validação inicial para elementos do DOM (importante para evitar erros nulos)
     if (!officeTitle || !officeImage || !officeDescriptionText || !officeHoursText || 
         !officeLocationText || !officeStatusText || !officeCoordinatorText || 
         !formMessage || !solicitarCertificadoBtn || !voltarParaListaBtn) {
@@ -29,10 +24,9 @@ export async function initDetalhesOficina(params) {
         return; 
     }
 
-    // Limpa mensagens de feedback e esconde o botão de solicitação inicialmente
     formMessage.textContent = '';
     formMessage.classList.remove('success', 'error');
-    solicitarCertificadoBtn.style.display = 'none'; // Esconde o botão até os detalhes serem carregados com sucesso
+    solicitarCertificadoBtn.style.display = 'none';
 
     if (!officeId) {
         officeTitle.textContent = "Oficina não encontrada.";
@@ -56,25 +50,11 @@ export async function initDetalhesOficina(params) {
             officeHoursText.textContent = data.cargaHoraria ? `${data.cargaHoraria}` : 'N/A';
             officeLocationText.textContent = data.local || 'N/A';
             officeStatusText.textContent = data.status || 'N/A';
-            
-            // Buscar o nome do coordenador (assumindo que 'coordenadorId' está na oficina)
-            if (data.coordenadorId) {
-                const coordinatorRef = doc(db, "coordenadores", data.coordenadorId);
-                const coordinatorSnap = await getDoc(coordinatorRef);
-                if (coordinatorSnap.exists()) {
-                    officeCoordinatorText.textContent = coordinatorSnap.data().nome || 'Coordenador desconhecido';
-                } else {
-                    officeCoordinatorText.textContent = 'Coordenador não encontrado';
-                }
-            } else {
-                officeCoordinatorText.textContent = 'N/A';
-            }
+            officeCoordinatorText.textContent = data.departamento || 'N/A'; 
 
-            // Exibe o botão de solicitar certificado e configura o clique após carregar os detalhes
             solicitarCertificadoBtn.style.display = 'block';
             solicitarCertificadoBtn.onclick = () => {
                 if (window.showScreen) {
-                    // Navega para a tela de solicitação de certificado, passando o ID da oficina
                     window.showScreen('solicitar-certificado', { officeId: officeId });
                 } else {
                     console.warn("A função 'showScreen' não está definida globalmente para navegação.");
@@ -86,20 +66,19 @@ export async function initDetalhesOficina(params) {
             officeTitle.textContent = "Oficina não encontrada.";
             formMessage.textContent = "Nenhuma oficina encontrada com este ID.";
             formMessage.classList.add('error');
-            solicitarCertificadoBtn.style.display = 'none'; // Garante que o botão não apareça
+            solicitarCertificadoBtn.style.display = 'none';
         }
     } catch (error) {
         console.error("Erro ao carregar detalhes da oficina:", error);
         officeTitle.textContent = "Erro ao carregar oficina.";
         formMessage.textContent = `Erro ao carregar detalhes: ${error.message}`;
         formMessage.classList.add('error');
-        solicitarCertificadoBtn.style.display = 'none'; // Garante que o botão não apareça
+        solicitarCertificadoBtn.style.display = 'none';
     }
 
-    // Configurar o botão de voltar
     voltarParaListaBtn.addEventListener('click', () => {
         if (window.showScreen) {
-            window.showScreen('lista-oficinas'); // Volta para a tela de listagem de oficinas
+            window.showScreen('lista-oficinas');
         } else {
             console.warn("A função 'showScreen' não está definida globalmente para navegação.");
             alert("Redirecionamento para a lista de oficinas. Função de navegação indisponível.");

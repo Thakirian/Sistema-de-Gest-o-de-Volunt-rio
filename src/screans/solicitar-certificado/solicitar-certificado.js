@@ -31,11 +31,15 @@ export async function initSolicitarCertificado() {
         oficinaSelect.innerHTML = '<option value="">Carregando oficinas...</option>';
         try {
             const oficinasCollectionRef = collection(db, "oficinas");
-            const q = query(oficinasCollectionRef, where("status", "==", "ativa")); 
+            
+            // Agora, busca oficinas com status "ativa" OU "concluída"
+            const q = query(oficinasCollectionRef, where("status", "in", ["ativa", "concluida"])); 
+            // --- FIM DA ALTERAÇÃO ---
+
             const querySnapshot = await getDocs(q);
 
             if (querySnapshot.empty) {
-                oficinaSelect.innerHTML = '<option value="">Nenhuma oficina ativa encontrada.</option>';
+                oficinaSelect.innerHTML = '<option value="">Nenhuma oficina ativa ou concluída encontrada.</option>';
                 oficinaSelect.disabled = true;
                 return;
             }
@@ -50,7 +54,7 @@ export async function initSolicitarCertificado() {
                 option.textContent = oficina.nome; 
                 oficinaSelect.appendChild(option);
             });
-            console.log('Oficinas carregadas com sucesso.');
+            console.log('Oficinas (ativas e concluídas) carregadas com sucesso.');
 
         } catch (error) {
             console.error("Erro ao carregar oficinas:", error);

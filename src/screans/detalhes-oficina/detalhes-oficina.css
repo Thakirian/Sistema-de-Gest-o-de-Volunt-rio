@@ -11,14 +11,14 @@
 */
 
 .detalhes-oficina {
-    padding: 40px; 
-    background-color: #fcfbfa; 
+    padding: 40px;
+    background-color: #fcfbfa;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    max-width: 800px; /* Um pouco mais largo para a imagem */
+    max-width: 800px;
     margin: 40px auto;
     animation: fadeIn 0.5s ease-out forwards;
-    position: relative; /* Para posicionar o botão de voltar */
+    position: relative;
 }
 
 @keyframes fadeIn {
@@ -27,8 +27,8 @@
 }
 
 h1 {
-    font-size: 32px; 
-    margin-bottom: 25px; 
+    font-size: 32px;
+    margin-bottom: 25px;
     font-weight: 700;
     color: #808eea;
     text-align: center;
@@ -67,7 +67,7 @@ h1 {
 
 .office-image-container {
     width: 100%;
-    max-width: 500px; /* Limita o tamanho da imagem */
+    max-width: 500px;
     margin-bottom: 20px;
     border-radius: 10px;
     overflow: hidden;
@@ -78,7 +78,7 @@ h1 {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover; /* Garante que a imagem preencha o container */
+    object-fit: cover;
 }
 
 .office-description,
@@ -100,31 +100,31 @@ h1 {
 }
 
 .action-button {
-    background-color: #f07839; /* Laranja para o botão de ação */
+    background-color: #f07839;
     color: white;
-    padding: 15px 30px; 
+    padding: 15px 30px;
     border: none;
     border-radius: 8px;
     font-size: 18px;
-    font-weight: 700; 
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     margin-top: 35px;
-    display: block; /* Para centralizar o botão */
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .action-button:hover {
-    background-color: #d1642c; 
-    transform: translateY(-3px); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+    background-color: #d1642c;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 .action-button:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .form-message {
@@ -146,7 +146,6 @@ h1 {
     color: #ec3f78;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .detalhes-oficina-content {
         padding: 25px;

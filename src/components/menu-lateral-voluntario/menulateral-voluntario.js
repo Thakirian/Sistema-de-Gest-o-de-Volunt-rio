@@ -1,4 +1,3 @@
-// src/components/menu-lateral-voluntario/menu-lateral-voluntario.js
 import { auth_mod } from "../../firebase/firebase-config.js";
 import { signOut } from 'firebase/auth';
 

@@ -10,7 +10,7 @@
 #fcfbfa - branco gelo
 */
 
-.perfil-voluntario-content {
+.perfil-voluntario-content { 
     padding: 40px; 
     background-color: #fcfbfa; 
     border-radius: 12px;
@@ -88,12 +88,12 @@ h1 {
     margin-top: 6px; 
 }
 
-.form-row {
+.form-row { 
     display: flex;
     gap: 25px; 
 }
 
-.form-row .form-group {
+.form-row .form-group { 
     flex: 1; 
 }
 
@@ -145,7 +145,7 @@ h1 {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .perfil-voluntario-content {
+    .perfil-voluntario-content { 
         padding: 25px;
         margin: 25px auto;
     }
@@ -155,8 +155,8 @@ h1 {
         margin-bottom: 25px;
     }
 
-    .form-row {
-        flex-direction: column; /* Em telas menores, os campos ficam um abaixo do outro */
+    .form-row { 
+        flex-direction: column; 
         gap: 18px;
     }
 
@@ -172,7 +172,7 @@ h1 {
 }
 
 @media (max-width: 480px) {
-    .perfil-voluntario-content {
+    .perfil-voluntario-content { 
         padding: 15px;
         margin: 15px;
     }

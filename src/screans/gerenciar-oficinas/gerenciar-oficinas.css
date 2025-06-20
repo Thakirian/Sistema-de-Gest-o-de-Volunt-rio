@@ -1,5 +1,23 @@
 /* ../gerenciar-oficinas/gerenciar-oficinas.css */
 
+/* Paleta de Cores (para referência)
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
+.table td img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover; 
+    border-radius: 8px; 
+    vertical-align: middle;
+}
+
 .table-container {
     background: white;
     border-radius: 12px;
@@ -39,7 +57,6 @@
     transition: background-color 0.2s ease;
 }
 
-/* Status Badges - Se estas cores forem específicas para status de oficinas nesta tela */
 .status-badge {
     padding: 5px 12px;
     border-radius: 20px;
@@ -48,14 +65,13 @@
     display: inline-block;
 }
 
-.status-ativa { background-color: #e8f5e8; color: #2e7d32; } /* Verde */
-.status-inativa { background-color: #ffebee; color: #c62828; } /* Vermelho */
-.status-pendente { background-color: #fff3e0; color: #ef6c00; } /* Laranja */
-.status-aprovado { background-color: #e3f2fd; color: #1565c0; } /* Azul */
-.status-concluida { background-color: #e0e0e0; color: #424242; } /* Cinza */
-.status-rejeitado { background-color: #ffebee; color: #c62828; } /* Vermelho para rejeitado */
+.status-ativa { background-color: #e8f5e8; color: #2e7d32; }
+.status-inativa { background-color: #ffebee; color: #c62828; }
+.status-pendente { background-color: #fff3e0; color: #ef6c00; }
+.status-aprovado { background-color: #e3f2fd; color: #1565c0; }
+.status-concluida { background-color: #e0e0e0; color: #424242; }
+.status-rejeitado { background-color: #ffebee; color: #c62828; }
 
-/* Forms - Se estes formulários tiverem estilos diferentes dos formulários genéricos */
 .form-group {
     margin-bottom: 20px;
 }
@@ -80,7 +96,7 @@
 
 .form-input:focus, .form-select:focus {
     outline: none;
-    border-color: #1976d2; /* Cor de foco do coordenador */
+    border-color: #1976d2;
     box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
 }
 
@@ -105,7 +121,6 @@
     margin-top: 20px;
 }
 
-/* Botões menores para tabelas / ações específicas da tela */
 .btn-sm {
     padding: 6px 12px;
     font-size: 13px;

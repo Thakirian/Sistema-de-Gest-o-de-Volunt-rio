@@ -34,7 +34,7 @@ export function initMenuLateralCoordenador(loadScreenCallback, userName, userRol
             try {
                 await signOut(auth_mod);
                 alert("Você foi desconectado com sucesso!");
-                window.location.href = '../../screens/login/login.html'; // Redireciona para a página de login
+                window.location.href = '../../screans/login/login.html'; 
             } catch (error) {
                 console.error("Erro ao fazer logout:", error);
                 alert("Erro ao desconectar. Tente novamente.");

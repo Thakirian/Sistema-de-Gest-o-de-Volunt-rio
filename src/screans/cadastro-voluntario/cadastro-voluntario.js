@@ -4,8 +4,8 @@ import { doc, setDoc } from "firebase/firestore";
 
 // Configurações do Firestore para melhor estabilidade
 const firestoreSettings = {
-    experimentalForceLongPolling: true, // Melhora conexão em redes instáveis
-    merge: true // Evita sobrescrita acidental de dados
+    experimentalForceLongPolling: true, 
+    merge: true 
 };
 
 // Espera o DOM carregar completamente
@@ -25,15 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         
-        // Desabilita o botão durante o processamento
         submitBtn.disabled = true;
         submitBtn.textContent = 'Cadastrando...';
 
-        // Limpa erros anteriores
         emailError.textContent = '';
         senhaError.textContent = '';
 
-        // Coleta os valores dos campos
+        // Coleta os valores dos campos do voluntário
         const nome = document.getElementById('nome').value.trim();
         const ra = document.getElementById('ra').value.trim();
         const periodo = document.getElementById('periodo').value.trim();
@@ -45,14 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Validações
         let isValid = true;
         
-        // Validação de email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             emailError.textContent = 'Por favor, insira um e-mail válido.';
             isValid = false;
         }
 
-        // Validação de senha
         if (senha !== confirmarSenha) {
             senhaError.textContent = 'As senhas não coincidem.';
             isValid = false;
@@ -72,15 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Tenta cadastrar no Firebase
         try {
-            // 1. Cria o usuário no Authentication
             const userCredential = await createUserWithEmailAndPassword(auth_mod, email, senha);
-            
-            // 2. Verifica se o usuário está autenticado corretamente
+           
             if (!auth_mod.currentUser) {
                 throw new Error("Falha na autenticação após cadastro");
             }
 
-            // 3. Salva dados adicionais no Firestore
             await setDoc(
                 doc(db, "voluntarios", userCredential.user.uid), 
                 {
@@ -96,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 firestoreSettings
             );
 
-            // 4. Redireciona para página de login
             alert('Cadastro realizado com sucesso! Você pode fazer login agora.');
             window.location.href = './login/login.html';
             

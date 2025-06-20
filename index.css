@@ -1,6 +1,3 @@
-/* index.css */
-
-/* Paleta de Cores (Definida como variáveis CSS para fácil uso) */
 :root {
     --azul-lavanda: #808eea;
     --verde-agua: #56c7bd;
@@ -8,9 +5,9 @@
     --rosa-escuro: #ec3f78;
     --rosa-claro: #f3b1d8;
     --laranja: #f07839;
-    --branco-gelo: #fcfbfa; /* Quase branco */
-    --cinza-texto: #333; /* Texto principal mais escuro */
-    --cinza-claro-fundo: #f8f8f8; /* Fundo levemente acinzentado para seções */
+    --branco-gelo: #fcfbfa;
+    --cinza-texto: #333;
+    --cinza-claro-fundo: #f8f8f8;
     --borda-suave: #ddd;
     --sombra-leve: rgba(0,0,0,0.08);
     --sombra-media: rgba(0,0,0,0.15);
@@ -20,20 +17,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif; /* Usando Roboto, que linkamos no HTML */
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
+    min-height: 100vh;
     background-color: var(--branco-gelo);
     color: var(--cinza-texto);
     line-height: 1.6;
-    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    overflow-x: hidden;
 }
 
-/* Estilo do Cabeçalho (Header) */
 .header {
     background-color: #ffffff;
     padding: 15px 40px;
@@ -41,9 +37,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; /* Fixa o header no topo ao rolar */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
+    z-index: 1000;
 }
 
 .header .logo {
@@ -53,12 +49,11 @@ body {
 }
 
 .header .logo-img {
-    height: 45px; /* Ajuste a altura conforme a sua imagem */
-    width: auto; /* Mantém a proporção da imagem */
-    margin-right: 5px; /* Pequeno espaço entre a imagem e o texto se eles ficarem lado a lado */
+    height: 45px;
+    width: auto;
+    margin-right: 5px;
 }
 
-/* Estilo do Logo em Grid (se você optar por ele) */
 .header .logo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -66,8 +61,8 @@ body {
     width: 38px;
     height: 38px;
     gap: 2px;
-    border-radius: 4px; /* Leve arredondamento no logo grid */
-    overflow: hidden; /* Garante que as cores não "vazem" */
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 .header .logo-square {
@@ -75,29 +70,27 @@ body {
     height: 100%;
 }
 
-/* Cores do seu logo em grid - Mantenha a sua paleta! */
 .header .logo-square:nth-child(1) { background-color: var(--verde-agua); }
 .header .logo-square:nth-child(2) { background-color: var(--azul-lavanda); }
 .header .logo-square:nth-child(3) { background-color: var(--laranja); }
 .header .logo-square:nth-child(4) { background-color: var(--rosa-escuro); }
 
 .header .logo-text {
-    font-size: 26px; /* Aumenta o texto do logo */
+    font-size: 26px;
     font-weight: 700;
     color: var(--azul-lavanda);
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.03); /* Sombra sutil */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.03);
 }
 
-/* Seção Principal (Hero Section) - A primeira grande parte da página */
 .hero-section {
-    flex: 1; /* Faz com que esta seção ocupe o espaço restante verticalmente */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 80px 20px; /* Mais padding para espaçamento */
-    background: linear-gradient(135deg, var(--branco-gelo) 0%, #eef5f5 100%); /* Gradiente suave */
-    animation: fadeIn 1s ease-out forwards; /* Animação de entrada */
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--branco-gelo) 0%, #eef5f5 100%);
+    animation: fadeIn 1s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -106,9 +99,9 @@ body {
 }
 
 .hero-content {
-    max-width: 900px; /* Mais largura para o conteúdo */
-    animation: scaleIn 0.8s ease-out 0.2s forwards; /* Animação atrasada */
-    opacity: 0; /* Começa invisível para a animação */
+    max-width: 900px;
+    animation: scaleIn 0.8s ease-out 0.2s forwards;
+    opacity: 0;
     transform: scale(0.95);
 }
 
@@ -117,58 +110,57 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 52px; /* Título maior e impactante */
+    font-size: 52px;
     color: var(--azul-lavanda);
     margin-bottom: 25px;
-    font-weight: 900; /* Mais negrito */
+    font-weight: 900;
     line-height: 1.15;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
 
 .hero-content .tagline {
-    font-size: 26px; /* Slogan maior */
+    font-size: 26px;
     color: var(--verde-agua);
     margin-bottom: 35px;
     font-weight: 600;
 }
 
 .hero-content p {
-    font-size: 19px; /* Texto descritivo maior */
+    font-size: 19px;
     margin-bottom: 50px;
     color: var(--cinza-texto);
-    max-width: 700px; /* Limita largura do parágrafo */
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Botões de Chamada para Ação (CTA Buttons) */
 .cta-buttons {
     display: flex;
     justify-content: center;
-    gap: 35px; /* Mais espaço entre os botões */
-    flex-wrap: wrap; /* Quebra de linha em telas menores */
+    gap: 35px;
+    flex-wrap: wrap;
 }
 
 .button {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 20px 40px; /* Aumenta o padding para botões maiores */
-    border-radius: 12px; /* Mais arredondamento */
-    font-size: 20px; /* Fonte maior */
+    padding: 20px 40px;
+    border-radius: 12px;
+    font-size: 20px;
     font-weight: 700;
     text-decoration: none;
     color: white;
-    box-shadow: 0 6px 20px var(--sombra-leve); /* Sombra mais destacada */
+    box-shadow: 0 6px 20px var(--sombra-leve);
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     cursor: pointer;
-    border: none; /* Remove borda padrão de botões */
+    border: none;
 }
 
 .button .material-icons {
-    font-size: 30px; /* Ícone maior */
+    font-size: 30px;
 }
 
 .button-voluntario {
@@ -176,8 +168,8 @@ body {
 }
 
 .button-voluntario:hover {
-    background-color: #48a69e; /* Tom mais escuro do verde água */
-    transform: translateY(-7px) scale(1.02); /* Efeito de elevação e leve aumento */
+    background-color: #48a69e;
+    transform: translateY(-7px) scale(1.02);
     box-shadow: 0 10px 25px var(--sombra-media);
 }
 
@@ -186,26 +178,25 @@ body {
 }
 
 .button-coordenador:hover {
-    background-color: #cc632b; /* Tom mais escuro do laranja */
+    background-color: #cc632b;
     transform: translateY(-7px) scale(1.02);
     box-shadow: 0 10px 25px var(--sombra-media);
 }
 
-/* Seção de Informações do Projeto */
 .project-info-section {
     background-color: #ffffff;
-    padding: 80px 20px; /* Mais padding para esta seção */
+    padding: 80px 20px;
     text-align: left;
-    border-top: 1px solid var(--borda-suave); /* Uma linha divisória suave */
+    border-top: 1px solid var(--borda-suave);
 }
 
 .info-container {
-    max-width: 1000px; /* Largura máxima maior para o texto do projeto */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .project-info-section h2 {
-    font-size: 40px; /* Título da seção maior */
+    font-size: 40px;
     color: var(--azul-lavanda);
     margin-bottom: 40px;
     text-align: center;
@@ -213,23 +204,23 @@ body {
 }
 
 .project-info-section h3 {
-    font-size: 30px; /* Subtítulos maiores */
+    font-size: 30px;
     color: var(--verde-agua);
-    margin-top: 50px; /* Mais espaço antes dos subtítulos */
+    margin-top: 50px;
     margin-bottom: 25px;
     font-weight: 700;
 }
 
 .project-info-section p {
-    font-size: 18px; /* Texto mais legível */
+    font-size: 18px;
     color: var(--cinza-texto);
     margin-bottom: 20px;
     line-height: 1.7;
 }
 
 .project-info-section ul {
-    list-style: disc; /* Marcadores de lista */
-    margin-left: 30px; /* Indentação */
+    list-style: disc;
+    margin-left: 30px;
     margin-bottom: 25px;
     padding-left: 0;
 }
@@ -241,14 +232,13 @@ body {
     line-height: 1.6;
 }
 
-/* Rodapé (Footer) */
 .footer {
     background-color: var(--azul-lavanda);
     color: white;
     padding: 30px 40px;
     text-align: center;
     font-size: 15px;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05); /* Sombra para o rodapé */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
 }
 
 .footer p {
@@ -258,7 +248,6 @@ body {
     margin-bottom: 0;
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
     .hero-content h1 {
         font-size: 44px;
@@ -274,7 +263,7 @@ body {
 @media (max-width: 768px) {
     .header {
         padding: 15px 20px;
-        flex-direction: column; /* Empilha logo e navegação */
+        flex-direction: column;
         gap: 10px;
     }
     .header .logo-text {
@@ -295,14 +284,14 @@ body {
         margin-bottom: 30px;
     }
     .cta-buttons {
-        flex-direction: column; /* Botões ficam um abaixo do outro */
+        flex-direction: column;
         gap: 20px;
     }
     .button {
         padding: 15px 25px;
         font-size: 18px;
-        width: 90%; /* Ocupa quase toda a largura */
-        max-width: 350px; /* Limita para não ficar gigante */
+        width: 90%;
+        max-width: 350px;
     }
 
     .project-info-section {

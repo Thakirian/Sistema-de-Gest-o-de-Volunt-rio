@@ -19,8 +19,6 @@ export async function initHistoricoSolicitacoes() {
             try {
                 const solicitacoesCollectionRef = collection(db, "solicitacoesCertificado");
 
-                // Cria uma consulta para pegar todas as solicitações deste voluntário
-                // Ordenadas pela data da solicitação, mais recente primeiro
                 const q = query(
                     solicitacoesCollectionRef,
                     where("voluntarioId", "==", voluntarioId),
@@ -40,7 +38,6 @@ export async function initHistoricoSolicitacoes() {
                     const solicitacao = docSnapshot.data();
                     let nomeOficina = "Oficina Desconhecida";
 
-                    // Se houver um oficinaId, busca o nome da oficina
                     if (solicitacao.oficinaId) {
                         try {
                             const oficinaDocRef = doc(db, "oficinas", solicitacao.oficinaId);

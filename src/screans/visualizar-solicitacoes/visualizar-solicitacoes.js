@@ -18,7 +18,7 @@ export async function initVisualizarSolicitacoes() {
     const detalhesVoluntarioEmail = document.getElementById('detalhesVoluntarioEmail');
     const detalhesOficinaNome = document.getElementById('detalhesOficinaNome');
     const detalhesOficinaDescricao = document.getElementById('detalhesOficinaDescricao');
-    const detalhesOficinaCargaHoraria = document.getElementById('detalhesOficinaCargaHoraria');
+    const detalhesOficinaCargaHoraria = document.getElementById('detalhesOficinaCargaHoraria'); 
     const detalhesOficinaData = document.getElementById('detalhesOficinaData');
     const detalhesDataSolicitacao = document.getElementById('detalhesDataSolicitacao');
     const detalhesStatusAtual = document.getElementById('detalhesStatusAtual');
@@ -26,7 +26,7 @@ export async function initVisualizarSolicitacoes() {
     const btnAprovarSolicitacao = document.getElementById('btnAprovarSolicitacao');
     const btnRejeitarSolicitacao = document.getElementById('btnRejeitarSolicitacao');
 
-    let currentSolicitacaoId = null; // Para armazenar o ID da solicitação sendo visualizada/editada
+    let currentSolicitacaoId = null; 
 
     // Função para carregar e exibir as solicitações
     async function loadSolicitacoes() {
@@ -35,16 +35,15 @@ export async function initVisualizarSolicitacoes() {
             return;
         }
 
-        solicitacoesTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Carregando solicitações...</td></tr>'; // Colspan ajustado para 6 colunas
+        solicitacoesTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Carregando solicitações...</td></tr>';
         if (noSolicitacoesMessage) noSolicitacoesMessage.style.display = 'none';
 
         try {
             const searchTerm = searchSolicitacoesInput ? searchSolicitacoesInput.value.trim().toLowerCase() : '';
             const filterStatus = filterStatusSelect ? filterStatusSelect.value : '';
 
-            let q = collection(db, 'solicitacoesCertificado'); // Coleção onde as solicitações são guardadas
+            let q = collection(db, 'solicitacoesCertificado');
 
-            // Aplica filtro de status se selecionado
             if (filterStatus) {
                 q = query(q, where('status', '==', filterStatus));
             }
@@ -55,7 +54,6 @@ export async function initVisualizarSolicitacoes() {
             for (const docSnap of querySnapshot.docs) {
                 const solicitacao = { id: docSnap.id, ...docSnap.data() };
 
-                // Buscar dados do voluntário
                 let voluntarioNome = 'N/A';
                 let voluntarioEmail = 'N/A';
                 if (solicitacao.voluntarioId) {
@@ -68,43 +66,37 @@ export async function initVisualizarSolicitacoes() {
                     }
                 }
 
-                // Buscar dados da oficina
                 let oficinaNome = 'N/A';
-                let oficinaCargaHoraria = 'N/A';
-                let oficinaData = 'N/A';
+                let oficinaCargaHorariaOficina = 'N/A'; 
+                let oficinaDataFormatada = 'N/A';
                 if (solicitacao.oficinaId) {
                     const oficinaRef = doc(db, 'oficinas', solicitacao.oficinaId);
                     const oficinaSnap = await getDoc(oficinaRef);
                     if (oficinaSnap.exists()) {
                         const oficinaData = oficinaSnap.data();
                         oficinaNome = oficinaData.nome || oficinaNome;
-                        // Nota: no RF04, a carga horária é da solicitação. No RF09, é da oficina.
-                        // Aqui, para a listagem, usaremos a carga horária solicitada.
-                        // A carga horária da oficina completa estará no detalhe.
-                        oficinaCargaHoraria = oficinaData.cargaHoraria || oficinaCargaHoraria; 
-                        oficinaData = oficinaData.dataOficina ? new Date(oficinaData.dataOficina.seconds * 1000).toLocaleDateString('pt-BR') : 'N/A';
+                        oficinaCargaHorariaOficina = oficinaData.cargaHoraria || oficinaCargaHorariaOficina; 
+                        oficinaDataFormatada = oficinaData.dataOficina ? new Date(oficinaData.dataOficina.seconds * 1000).toLocaleDateString('pt-BR') : 'N/A';
                     }
                 }
 
-                // Adiciona dados do voluntário e oficina à solicitação para facilitar a renderização/busca
                 solicitacao.voluntarioNome = voluntarioNome;
                 solicitacao.voluntarioEmail = voluntarioEmail;
                 solicitacao.oficinaNome = oficinaNome;
-                solicitacao.oficinaCargaHorariaReal = oficinaCargaHoraria; // Guardar a carga horária da oficina aqui
-                solicitacao.oficinaData = oficinaData;
+                solicitacao.oficinaCargaHorariaReal = oficinaCargaHorariaOficina; 
+                solicitacao.oficinaData = oficinaDataFormatada;
 
-                // Aplica filtro de busca por termo (nome do voluntário ou nome da oficina)
                 if (searchTerm && !(
                     (solicitacao.voluntarioNome && solicitacao.voluntarioNome.toLowerCase().includes(searchTerm)) ||
                     (solicitacao.oficinaNome && solicitacao.oficinaNome.toLowerCase().includes(searchTerm))
                 )) {
-                    continue; // Pula esta solicitação se não corresponder ao termo de busca
+                    continue;
                 }
                 
                 solicitacoes.push(solicitacao);
             }
 
-            solicitacoesTableBody.innerHTML = ''; // Limpa novamente antes de preencher
+            solicitacoesTableBody.innerHTML = '';
             if (solicitacoes.length === 0) {
                 if (noSolicitacoesMessage) noSolicitacoesMessage.style.display = 'block';
             } else {
@@ -118,7 +110,7 @@ export async function initVisualizarSolicitacoes() {
                             <td>${solicitacao.voluntarioNome}</td>
                             <td>${solicitacao.oficinaNome}</td>
                             <td>${dataSolicitacaoFormatada}</td>
-                            <td>${solicitacao.cargaHorariaSolicitada || 'N/A'}h</td>
+                            <td>${solicitacao.cargaHoraria || 'N/A'}h</td>
                             <td><span class="status-badge ${statusClass}">${solicitacao.status || 'N/A'}</span></td>
                             <td>
                                 <button class="btn btn-info view-details-btn" data-id="${solicitacao.id}">Ver Detalhes</button>
@@ -128,7 +120,6 @@ export async function initVisualizarSolicitacoes() {
                     solicitacoesTableBody.innerHTML += row;
                 });
 
-                // Adiciona event listeners para os botões "Ver Detalhes"
                 solicitacoesTableBody.querySelectorAll('.view-details-btn').forEach(button => {
                     button.addEventListener('click', (event) => {
                         const solicitacaoId = event.target.dataset.id;
@@ -139,7 +130,7 @@ export async function initVisualizarSolicitacoes() {
 
         } catch (error) {
             console.error("Erro ao carregar solicitações de certificado:", error);
-            solicitacoesTableBody.innerHTML = `<tr><td colspan="6" style="color: red; text-align: center;">Erro ao carregar solicitações.</td></tr>`; // Colspan ajustado
+            solicitacoesTableBody.innerHTML = `<tr><td colspan="6" style="color: red; text-align: center;">Erro ao carregar solicitações.</td></tr>`;
             if (noSolicitacoesMessage) noSolicitacoesMessage.style.display = 'none';
         }
     }
@@ -158,7 +149,6 @@ export async function initVisualizarSolicitacoes() {
 
             const solicitacao = solicitacaoSnap.data();
 
-            // Buscar dados do voluntário
             let voluntarioNome = 'N/A';
             let voluntarioEmail = 'N/A';
             if (solicitacao.voluntarioId) {
@@ -171,11 +161,10 @@ export async function initVisualizarSolicitacoes() {
                 }
             }
 
-            // Buscar dados da oficina
             let oficinaNome = 'N/A';
             let oficinaDescricao = 'N/A';
-            let oficinaCargaHoraria = 'N/A';
-            let oficinaData = 'N/A';
+            let oficinaCargaHoraria = 'N/A'; 
+            let oficinaDataFormatada = 'N/A';
             if (solicitacao.oficinaId) {
                 const oficinaRef = doc(db, 'oficinas', solicitacao.oficinaId);
                 const oficinaSnap = await getDoc(oficinaRef);
@@ -184,21 +173,21 @@ export async function initVisualizarSolicitacoes() {
                     oficinaNome = oficinaData.nome || oficinaNome;
                     oficinaDescricao = oficinaData.descricao || oficinaDescricao;
                     oficinaCargaHoraria = oficinaData.cargaHoraria || oficinaCargaHoraria;
-                    oficinaData = oficinaData.dataOficina ? new Date(oficinaData.dataOficina.seconds * 1000).toLocaleDateString('pt-BR') : 'N/A';
+                    oficinaDataFormatada = oficinaData.dataOficina ? new Date(oficinaData.dataOficina.seconds * 1000).toLocaleDateString('pt-BR') : 'N/A';
                 }
             }
-
+            
             // Preencher o modal
             detalhesVoluntarioNome.textContent = voluntarioNome;
             detalhesVoluntarioEmail.textContent = voluntarioEmail;
             detalhesOficinaNome.textContent = oficinaNome;
             detalhesOficinaDescricao.textContent = oficinaDescricao;
-            detalhesOficinaCargaHoraria.textContent = oficinaCargaHoraria; // Carga horária da oficina
-            detalhesOficinaData.textContent = oficinaData;
+            detalhesOficinaCargaHoraria.textContent = oficinaCargaHoraria + 'h'; 
+            detalhesOficinaData.textContent = oficinaDataFormatada;
             detalhesDataSolicitacao.textContent = solicitacao.dataSolicitacao ? new Date(solicitacao.dataSolicitacao.seconds * 1000).toLocaleDateString('pt-BR') : 'N/A';
             detalhesStatusAtual.textContent = solicitacao.status || 'N/A';
             detalhesStatusAtual.className = `status-badge status-${(solicitacao.status || 'N/A').toLowerCase().replace(' ', '-')}`;
-            detalhesObservacoes.textContent = solicitacao.observacoes || 'Nenhuma observação.';
+            detalhesObservacoes.textContent = solicitacao.detalhes || 'Nenhuma observação.';
 
             // Habilitar/desabilitar botões de ação baseado no status atual
             if (solicitacao.status === 'pendente') {
@@ -228,10 +217,10 @@ export async function initVisualizarSolicitacoes() {
             const solicitacaoRef = doc(db, 'solicitacoesCertificado', currentSolicitacaoId);
             await updateDoc(solicitacaoRef, { status: status });
             alert(`Solicitação ${status} com sucesso!`);
+            
             window.closeModal('detalhesSolicitacaoModal');
-            loadSolicitacoes(); // Recarrega a lista para refletir a mudança
-            // RF07: Aqui você integraria a lógica de envio de e-mail ao voluntário
-            // Ex: sendEmailNotification(voluntarioEmail, oficinaNome, status);
+            
+            loadSolicitacoes(); 
         } catch (error) {
             console.error(`Erro ao ${status} solicitação:`, error);
             alert(`Erro ao ${status} solicitação.`);
@@ -240,12 +229,10 @@ export async function initVisualizarSolicitacoes() {
 
     // --- Event Listeners ---
 
-    // Listener para o botão de aplicar filtros
     if (applyFiltersBtn) {
         applyFiltersBtn.addEventListener('click', loadSolicitacoes);
     }
 
-    // Listeners para os campos de busca/filtro (para buscar ao pressionar Enter)
     if (searchSolicitacoesInput) {
         searchSolicitacoesInput.addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
@@ -255,38 +242,29 @@ export async function initVisualizarSolicitacoes() {
     }
 
     if (filterStatusSelect) {
-        filterStatusSelect.addEventListener('change', loadSolicitacoes); // Atualiza ao mudar o filtro de status
+        filterStatusSelect.addEventListener('change', loadSolicitacoes);
     }
 
-    // Listeners para os botões de Aprovar/Rejeitar no modal
     if (btnAprovarSolicitacao) {
         btnAprovarSolicitacao.addEventListener('click', () => updateSolicitacaoStatus('aprovado'));
     }
     if (btnRejeitarSolicitacao) {
         btnRejeitarSolicitacao.addEventListener('click', () => updateSolicitacaoStatus('rejeitado'));
     }
-
-    // Carrega as solicitações assim que a tela é inicializada
     loadSolicitacoes();
 }
 
-// Funções globais para modais (se ainda não estiverem no dashboard-coordenador.js)
-// É crucial que estas funções estejam acessíveis globalmente se você as chama via onclick no HTML
-// Verifique se elas já existem para não sobrescrever
-if (!window.openModal) {
-    window.openModal = (modalId) => {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.style.display = 'flex'; // Usar flex para centralizar
-        }
-    };
-}
+// Funções globais para modais (mantidas aqui conforme sua solicitação)
+window.openModal = (modalId) => {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+};
 
-if (!window.closeModal) {
-    window.closeModal = (modalId) => {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    };
-}
+window.closeModal = (modalId) => {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+};

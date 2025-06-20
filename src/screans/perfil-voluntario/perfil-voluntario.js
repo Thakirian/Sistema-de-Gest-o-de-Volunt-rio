@@ -18,6 +18,16 @@ export async function initPerfilVoluntario() {
     const formMessage = document.getElementById('formMessage');
     const submitButton = perfilForm.querySelector('button[type="submit"]');
 
+    if (!perfilForm || !nomeInput || !raInput || !periodoInput || !cursoInput || !emailInput || !senhaInput || !formMessage || !submitButton) {
+        console.error("Um ou mais elementos do formulário de perfil do voluntário não foram encontrados. Verifique o HTML.");
+        if (formMessage) {
+            formMessage.textContent = "Erro ao carregar o formulário de perfil. Por favor, tente novamente.";
+            formMessage.classList.add('error');
+        }
+        if (perfilForm) perfilForm.style.display = 'none'; 
+        return; 
+    }
+
     let currentUserId = null;
 
     onAuthStateChanged(auth_mod, async (user) => {
@@ -81,7 +91,6 @@ export async function initPerfilVoluntario() {
                     ra: newRa,
                     periodo: newPeriodo,
                     curso: newCurso,
-                    // O email não é atualizado via Firestore, mas via Firebase Auth
                 };
                 await updateDoc(voluntarioRef, updatedProfileData);
                 console.log("Dados do perfil atualizados no Firestore.");
