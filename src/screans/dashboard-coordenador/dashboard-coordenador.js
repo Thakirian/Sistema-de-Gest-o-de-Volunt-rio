@@ -6,7 +6,7 @@ import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, lim
 // Importa as funções de inicialização para as outras telas do Coordenador
 import { initGerenciarOficinas } from '../gerenciar-oficinas/gerenciar-oficinas.js';
 import { initVisualizarSolicitacoes } from '../visualizar-solicitacoes/visualizar-solicitacoes.js';
-// import { initPerfilCoordenador } from '../perfil-coordenador/perfil-coordenador.js';
+import { initPerfilCoordenador } from '../perfil-coordenador/perfil-coordenador.js';
 
 // Importa a função de inicialização do componente menu lateral do coordenador
 import { initMenuLateralCoordenador } from '../../components/menu-lateral-coordenador/menulateral-coordenador.js';
@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const screenPaths = {
         'gerenciar-oficinas': '../gerenciar-oficinas/gerenciar-oficinas.html',
         'visualizar-solicitacoes': '../visualizar-solicitacoes/visualizar-solicitacoes.html',
-        // 'perfil-coordenador': '../perfil-coordenador/perfil-coordenador.html'
+        'perfil-coordenador': '../perfil-coordenador/perfil-coordenador.html'
     };
 
     // Define as funções de inicialização para as outras telas (se houver JS específico para elas)
     const screenInitializers = {
         'gerenciar-oficinas': initGerenciarOficinas,
         'visualizar-solicitacoes': initVisualizarSolicitacoes,
-        // 'perfil-coordenador': initPerfilCoordenador
+        'perfil-coordenador': initPerfilCoordenador
     };
 
     // Função para carregar o conteúdo HTML de uma tela secundária
