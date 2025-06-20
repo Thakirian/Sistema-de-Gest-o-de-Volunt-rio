@@ -4,6 +4,8 @@ import { auth_mod, db } from "../../firebase/firebase-config.js";
 import { collection, query, where, getDocs, addDoc, Timestamp } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
+let formSubmitHandler = null;
+
 // Função principal de inicialização da tela
 export async function initSolicitarCertificado() {
     console.log('Inicializando tela de Solicitar Certificado...');
@@ -12,15 +14,14 @@ export async function initSolicitarCertificado() {
     const solicitacaoCertificadoForm = document.getElementById('solicitacaoCertificadoForm');
     const formMessage = document.getElementById('formMessage');
 
-    // Garante que o usuário esteja logado antes de tentar carregar dados ou enviar o formulário
     onAuthStateChanged(auth_mod, async (user) => {
         if (user) {
-            console.log("Usuário logado para solicitar certificado:", user.email);
-            await loadOficinas(user.uid); // Carrega as oficinas disponíveis
-            setupFormSubmission(user.uid); // Configura o envio do formulário
+            console.log("Utilizador autenticado para solicitar certificado:", user.email);
+            await loadOficinas(user.uid); 
+            setupFormSubmission(user.uid); 
         } else {
-            console.log("Nenhum usuário logado. Não é possível solicitar certificado.");
-            formMessage.textContent = "Por favor, faça login para solicitar seu certificado.";
+            console.log("Nenhum utilizador autenticado. Não é possível solicitar certificado.");
+            formMessage.textContent = "Por favor, autentique-se para solicitar o seu certificado.";
             formMessage.classList.add('error');
             solicitacaoCertificadoForm.style.display = 'none';
         }
@@ -28,14 +29,13 @@ export async function initSolicitarCertificado() {
 
     // Função para carregar as oficinas e preencher o select
     async function loadOficinas(currentVoluntarioId) {
-        oficinaSelect.innerHTML = '<option value="">Carregando oficinas...</option>';
+        oficinaSelect.innerHTML = '<option value="">A carregar oficinas...</option>';
         try {
             const oficinasCollectionRef = collection(db, "oficinas");
             
             // Agora, busca oficinas com status "ativa" OU "concluída"
             const q = query(oficinasCollectionRef, where("status", "in", ["ativa", "concluida"])); 
-            // --- FIM DA ALTERAÇÃO ---
-
+            
             const querySnapshot = await getDocs(q);
 
             if (querySnapshot.empty) {
@@ -44,7 +44,7 @@ export async function initSolicitarCertificado() {
                 return;
             }
 
-            // Limpa a opção de "Carregando..."
+            // Limpa a opção de "A carregar..."
             oficinaSelect.innerHTML = '<option value="">-- Selecione uma Oficina --</option>';
 
             querySnapshot.forEach((doc) => {
@@ -65,7 +65,11 @@ export async function initSolicitarCertificado() {
 
     // Função para configurar o envio do formulário
     function setupFormSubmission(voluntarioId) {
-        solicitacaoCertificadoForm.addEventListener('submit', async (e) => {
+        if (formSubmitHandler) {
+            solicitacaoCertificadoForm.removeEventListener('submit', formSubmitHandler);
+        }
+
+        formSubmitHandler = async (e) => {
             e.preventDefault();
             formMessage.textContent = '';
             formMessage.classList.remove('success', 'error');
@@ -86,18 +90,18 @@ export async function initSolicitarCertificado() {
             }
 
             // Converte a data de participação para um objeto Date e depois para Timestamp
-            const dataParticipacaoDate = new Date(dataParticipacaoStr + 'T12:00:00'); // Adiciona T12:00:00 para evitar problemas de fuso horário
-            const dataSolicitacaoTimestamp = Timestamp.fromDate(new Date()); // Data atual da solicitação
+            const dataParticipacaoDate = new Date(dataParticipacaoStr + 'T12:00:00'); 
+            const dataSolicitacaoTimestamp = Timestamp.fromDate(new Date()); 
 
             const novaSolicitacao = {
                 voluntarioId: voluntarioId,
                 oficinaId: oficinaId,
-                dataParticipacao: Timestamp.fromDate(dataParticipacaoDate), // Convertendo a data de participação para Timestamp
+                dataParticipacao: Timestamp.fromDate(dataParticipacaoDate), 
                 cargaHoraria: cargaHoraria,
                 papelDesempenhado: papelDesempenhado,
                 detalhes: detalhes,
-                status: 'pendente', // Status inicial da solicitação
-                dataSolicitacao: dataSolicitacaoTimestamp, // Quando a solicitação foi enviada
+                status: 'pendente', 
+                dataSolicitacao: dataSolicitacaoTimestamp, 
             };
 
             try {
@@ -106,9 +110,7 @@ export async function initSolicitarCertificado() {
 
                 formMessage.textContent = "Solicitação de certificado enviada com sucesso!";
                 formMessage.classList.add('success');
-                solicitacaoCertificadoForm.reset(); // Limpa o formulário
-                oficinaSelect.innerHTML = '<option value="">-- Selecione uma Oficina --</option>'; // Resetar para o estado inicial
-                await loadOficinas(voluntarioId); // Recarrega as oficinas caso algo mude ou para resetar o select
+                solicitacaoCertificadoForm.reset();
                 console.log("Nova solicitação adicionada:", novaSolicitacao);
 
             } catch (error) {
@@ -116,8 +118,12 @@ export async function initSolicitarCertificado() {
                 formMessage.textContent = `Erro ao enviar solicitação: ${error.message}`;
                 formMessage.classList.add('error');
             } finally {
-                solicitacaoCertificadoForm.querySelector('button[type="submit"]').disabled = false; // Reabilita o botão
+                solicitacaoCertificadoForm.querySelector('button[type="submit"]').disabled = false; 
             }
-        });
+        };
+
+        // Adiciona o novo listener
+        solicitacaoCertificadoForm.addEventListener('submit', formSubmitHandler);
+        // *** FIM DA CORREÇÃO ***
     }
 }
