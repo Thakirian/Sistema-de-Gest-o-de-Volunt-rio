@@ -1,0 +1,211 @@
+/* src/screens/detalhes-oficina/detalhes-oficina.css */
+
+/* Paleta de Cores (para referência)
+#808eea - azul lavanda
+#56c7bd - verde água
+#fbd449 - amarelo
+#ec3f78 - rosa escuro
+#f3b1d8 - rosa claro
+#f07839 - laranja
+#fcfbfa - branco gelo
+*/
+
+.detalhes-oficina {
+    padding: 40px; 
+    background-color: #fcfbfa; 
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    max-width: 800px; /* Um pouco mais largo para a imagem */
+    margin: 40px auto;
+    animation: fadeIn 0.5s ease-out forwards;
+    position: relative; /* Para posicionar o botão de voltar */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 32px; 
+    margin-bottom: 25px; 
+    font-weight: 700;
+    color: #808eea;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #808eea;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.back-button:hover {
+    background-color: rgba(128, 142, 234, 0.1);
+}
+
+#office-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.office-image-container {
+    width: 100%;
+    max-width: 500px; /* Limita o tamanho da imagem */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#office-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* Garante que a imagem preencha o container */
+}
+
+.office-description,
+.office-hours,
+.office-location,
+.office-status,
+.office-coordinator {
+    font-size: 17px;
+    color: #555;
+    width: 100%;
+    max-width: 600px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.label {
+    color: #444;
+    font-weight: 600;
+}
+
+.action-button {
+    background-color: #f07839; /* Laranja para o botão de ação */
+    color: white;
+    padding: 15px 30px; 
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 35px;
+    display: block; /* Para centralizar o botão */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+}
+
+.action-button:hover {
+    background-color: #d1642c; 
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+}
+
+.action-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+}
+
+.form-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14.5px;
+}
+
+.form-message.success {
+    background-color: rgba(86, 199, 189, 0.15);
+    color: #56c7bd;
+}
+
+.form-message.error {
+    background-color: rgba(236, 63, 120, 0.15);
+    color: #ec3f78;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .detalhes-oficina-content {
+        padding: 25px;
+        margin: 25px auto;
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .back-button {
+        top: 15px;
+        left: 15px;
+        font-size: 14px;
+    }
+
+    .office-description,
+    .office-hours,
+    .office-location,
+    .office-status,
+    .office-coordinator {
+        font-size: 16px;
+    }
+
+    .action-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalhes-oficina-content {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .back-button {
+        top: 10px;
+        left: 10px;
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+
+    .office-description,
+    .office-hours,
+    .office-location,
+    .office-status,
+    .office-coordinator {
+        font-size: 15px;
+    }
+
+    .action-button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}

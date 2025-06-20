@@ -110,7 +110,7 @@ export async function initListaOficinas() {
         
         // Chamada para a função global showScreen do dashboard-voluntario
         if (window.showScreen) { 
-           window.showScreen('detalhamento-oficina', { oficinaId: oficinaId });
+           window.showScreen('detalhes-oficina', { officeId: oficinaId });
         } else {
            console.warn("A função 'showScreen' não está definida globalmente para navegação.");
            alert(`Detalhes da Oficina (ID: ${oficinaId}). Função de navegação indisponível.`);
