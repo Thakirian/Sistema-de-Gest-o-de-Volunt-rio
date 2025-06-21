@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async function (event) {
         event.preventDefault();
-
         const email = document.getElementById('email').value.trim();
         const senha = document.getElementById('senha').value;
 
