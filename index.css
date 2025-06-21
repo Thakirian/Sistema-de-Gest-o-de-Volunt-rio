@@ -350,3 +350,27 @@ body {
         font-size: 15px;
     }
 }
+
+/* Estilos para a imagem da equipe */
+.equipe-img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsividade para a imagem da equipe */
+@media (max-width: 768px) {
+    .equipe-img {
+        margin: 15px auto;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .equipe-img {
+        margin: 10px auto;
+        border-radius: 10px;
+    }
+}

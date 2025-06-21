@@ -18,24 +18,28 @@
 body {
   background-color: #fcfbfa;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .main-cadastro {
   display: flex;
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   background-color: #fcfbfa;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  min-height: 600px;
+  flex: 1;
 }
 
 .left-cadastro, .rigth-cadastro {
   width: 50%;
-  padding: 50px;
+  padding: 30px;
 }
 
 .left-cadastro {
@@ -43,16 +47,26 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.rigth-cadastro {
+  background-color: #fcfbfa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .left-cadastro h1 {
-  font-size: 28px;
+  font-size: clamp (20px, 4vw, 28px);
   color: #333;
   margin-bottom: 20px;
 }
 
 .left-cadastro h3 {
-  font-size: 16px;
+  font-size: clamp (14px, 2.5vw, 16px);
   color: #555;
 }
 
@@ -64,23 +78,27 @@ body {
 
 .card-cadastro {
   background-color: #fff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 90px;
+  margin-top: 20px;
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
 }
 
+.card-cadastro h2 {
+  margin-bottom: 30px;
+}
+
 .inputBox {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
 }
 
 .inputBox label {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-size: 14px;
   color: #333;
 }
@@ -92,6 +110,7 @@ body {
   outline: none;
   font-size: 14px;
   transition: border 0.3s;
+  width: 100%;
 }
 
 .inputBox input:focus {
@@ -104,7 +123,7 @@ body {
   border-radius: 10px;
   font-size: 13px;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: -30px;
 }
 
 .error-message ul {
@@ -116,7 +135,7 @@ body {
   background-color: #DCDCDC;
   color: rgba(0, 0, 0, 0.686);
   border: none;
-  padding: 15px;
+  padding: 12px;
   border-radius: 15px;
   font-size: 16px;
   cursor: pointer;
@@ -126,15 +145,6 @@ body {
 
 .submit-button:hover {
   background-color: #56c7bd;
-}
-
-footer {
-  position: absolute;
-  bottom: -100px;
-  text-align: center;
-  width: 100%;
-  font-size: 12px;
-  color: #999;
 }
 
 .left-cadastro {
@@ -150,7 +160,8 @@ footer {
 .img-cadastro {
   max-width: 100%;
   width: 100%;
-  margin-left: 3cm;
+  height: auto;
+  margin-left: 0;
 }
 
 .error-text {
@@ -176,4 +187,53 @@ footer {
 .highlight:hover {
   color: #56c7bd;
   font-size: 13px;
+}
+
+@media (max-widht: 768px) {
+  .main-cadastro {
+    flex-direction: column;
+    width: 90%;
+    margin: 10px
+  }
+
+  .left-cadastro, .rigth-cadastro {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .card-cadastro {
+    margin-top: 10px;
+    padding: 15px;
+  }
+
+  .img-cadastro {
+    margin-left: 0;
+    max-width: 80%;
+  }
+}
+
+@media (max-widht: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .main-cadastro {
+    width: 100%;
+  }
+  
+  .left-cadastro, .rigth-cadastro {
+    padding: 15px;
+  }
+
+  .card-cadastro {
+    padding: 10px;
+  }
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  color: #999;
+  margin-top: 20px;
 }

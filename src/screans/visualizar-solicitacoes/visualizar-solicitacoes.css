@@ -19,11 +19,12 @@
 }
 
 .screen-header h2.page-title {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    color: #808eea;
+    padding: 20px 30px;
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 55px;
 }
 
 .filters-container {
