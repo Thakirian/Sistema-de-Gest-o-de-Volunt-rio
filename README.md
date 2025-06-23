@@ -38,10 +38,10 @@ Siga os passos abaixo para configurar e rodar o sistema em seu ambiente local:
 1.  **Clonar o Repositório:**
     Se você ainda não tem o repositório localmente, abra o terminal e execute:
     ```bash
-    git clone [https://github.com/BrendaBeatrizC/Sistema-de-Gestao-de-Voluntarios.git](https://github.com/BrendaBeatrizC/Sistema-de-Gestao-de-Voluntarios.git)
+    git clone [https://github.com/Thakirian/Sistema-de-Gestao-de-Voluntarios.git](https://github.com/Thakirian/Sistema-de-Gestao-de-Voluntarios.git)
     cd Sistema-de-Gestao-de-Voluntarios
     ```
-    *(Nota: O link do GitHub do projeto é [Sistema de Gestão de Voluntários no GitHub](https://github.com/BrendaBeatrizC/Sistema-de-Gestao-de-Voluntarios).)*
+    *(Nota: O link do GitHub do projeto é [Sistema de Gestão de Voluntários no GitHub](https://github.com/Thakirian/Sistema-de-Gestao-de-Voluntarios).)*
 
 2.  **Instalar as Dependências:**
     Navegue até o diretório do projeto (`Sistema-de-Gestao-de-Voluntarios`) e instale todas as dependências necessárias:
