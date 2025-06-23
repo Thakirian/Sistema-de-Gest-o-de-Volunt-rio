@@ -1,34 +1,34 @@
 # Sistema de Gestão de Voluntários
 
-[cite_start]Este é um sistema web desenvolvido para o projeto de extensão "Quanto Amor Você Tem Para Dar"  [cite_start]da UTFPR - Câmpus Cornélio Procópio. [cite_start]O sistema visa facilitar a gestão de voluntários e atividades, substituindo processos manuais e automatizando o registro de informações.
+Este é um sistema web desenvolvido para o projeto de extensão "Quanto Amor Você Tem Para Dar" da UTFPR - Câmpus Cornélio Procópio. O sistema visa facilitar a gestão de voluntários e atividades, substituindo processos manuais e automatizando o registro de informações.
 
 ## Funcionalidades Principais:
 
-* [cite_start]**Cadastro de Voluntários:** Permite o registro de novos voluntários com informações pessoais e acadêmicas.
-* [cite_start]**Gestão de Oficinas e Atividades:** Coordenadores podem cadastrar, gerenciar e detalhar as atividades do projeto.
-* [cite_start]**Registro de Participação:** Voluntários podem registrar sua presença e função desempenhada nas atividades.
-* [cite_start]**Controle de Horas:** O sistema controla as horas dedicadas pelos voluntários às ações.
-* [cite_start]**Solicitação e Gerenciamento de Certificados:** Voluntários podem solicitar certificados de participação, e coordenadores podem aprovar ou rejeitar essas solicitações.
-* [cite_start]**Visualização de Histórico:** Voluntários podem consultar o histórico de suas solicitações e atividades participadas.
-* [cite_start]**Notificações:** Envio de notificações por e-mail para coordenadores sobre novas solicitações de certificados.
+**Cadastro de Voluntários:** Permite o registro de novos voluntários com informações pessoais e acadêmicas.
+**Gestão de Oficinas e Atividades:** Coordenadores podem cadastrar, gerenciar e detalhar as atividades do projeto.
+**Registro de Participação:** Voluntários podem registrar sua presença e função desempenhada nas atividades.
+**Controle de Horas:** O sistema controla as horas dedicadas pelos voluntários às ações.
+**Solicitação e Gerenciamento de Certificados:** Voluntários podem solicitar certificados de participação, e coordenadores podem aprovar ou rejeitar essas solicitações.
+**Visualização de Histórico:** Voluntários podem consultar o histórico de suas solicitações e atividades participadas.
+**Notificações:** Envio de notificações por e-mail para coordenadores sobre novas solicitações de certificados.
 
 ## Tecnologias Utilizadas:
 
-* [cite_start]**Frontend:** HTML5, CSS3, JavaScript.
-* [cite_start]**Backend:** Firebase (Firestore para banco de dados NoSQL e Firebase Authentication para autenticação de usuários).
-* [cite_start]**Metodologia de Desenvolvimento:** Feature-Driven Development (FDD), com foco em desenvolvimento incremental e entrega contínua de funcionalidades.
-* [cite_start]**Ferramentas de Modelagem e Design:** Astah (para diagramas UML) [cite: 77][cite_start], Figma (para prototipagem da interface).
-* [cite_start]**Gerenciamento de Projeto:** Trello.
-* [cite_start]**Controle de Versão:** Git e GitHub.
+**Frontend:** HTML5, CSS3, JavaScript.
+**Backend:** Firebase (Firestore para banco de dados NoSQL e Firebase Authentication para autenticação de usuários).
+**Metodologia de Desenvolvimento:** Feature-Driven Development (FDD), com foco em desenvolvimento incremental e entrega contínua de funcionalidades.
+**Ferramentas de Modelagem e Design:** Astah (para diagramas UML), Figma (para prototipagem da interface).
+**Gerenciamento de Projeto:** Trello.
+**Controle de Versão:** Git e GitHub.
 
 ## Pré-requisitos
 
 Antes de executar o projeto, é necessário ter os seguintes itens instalados em sua máquina:
 
-* **Node.js:** Versão 16 ou superior. Você pode baixá-lo em [https://nodejs.org](https://nodejs.org).
-* **Git:** (Opcional, apenas para clonar o repositório).
-* **Editor de Código:** Recomendamos o Visual Studio Code, disponível em [https://code.visualstudio.com/download](https://code.visualstudio.com/download).
-* **Conta Firebase:** Uma conta no Firebase com um projeto configurado, e os serviços de **Autenticação (Email/Senha)** e **Firestore** ativados.
+**Node.js:** Versão 16 ou superior. Você pode baixá-lo em [https://nodejs.org](https://nodejs.org).
+**Git:** (Opcional, apenas para clonar o repositório).
+**Editor de Código:** Recomendamos o Visual Studio Code, disponível em [https://code.visualstudio.com/download](https://code.visualstudio.com/download).
+**Conta Firebase:** Uma conta no Firebase com um projeto configurado, e os serviços de **Autenticação (Email/Senha)** e **Firestore** ativados.
 
 ## Como Executar o Projeto Localmente
 
